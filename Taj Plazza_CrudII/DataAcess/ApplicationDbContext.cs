@@ -10,15 +10,15 @@ namespace Taj_Plazza_CrudII.DataAcess
                 
         }
 
-        public DbSet<Categorie> Categories { get; set; }
+        public DbSet<Categorie>? Categories { get; set; }
 
-        public DbSet <Client> Clients { get; set; }
+        public DbSet<Client>? Clients { get; set; }
 
-        public DbSet <Reservation> Reservations { get; set; }
+        public DbSet<Reservation>? Reservations { get; set; }
 
-        public DbSet <OptionAjouter> Options { get; set; }
+        public DbSet<OptionAjouter>? Options { get; set; }
 
-        public DbSet<Reservation_OptionAjouter> reservation_OptionAjouters { get; set; }
+        public DbSet<Reservation_OptionAjouter>? ReservationOptionAjouters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
