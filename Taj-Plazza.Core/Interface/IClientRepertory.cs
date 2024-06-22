@@ -2,7 +2,7 @@
 
 namespace Taj_Plazza_CrudII.Interface
 {
-    public interface IclientRepertory
+    public interface IClientRepertory
     {
         Task<IEnumerable<Client>> GetAll();
 
@@ -13,6 +13,5 @@ namespace Taj_Plazza_CrudII.Interface
         Task Create(Client client);
 
         Task Update(Client client);
-
     }
 }

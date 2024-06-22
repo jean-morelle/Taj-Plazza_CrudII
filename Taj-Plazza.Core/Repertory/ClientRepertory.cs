@@ -5,7 +5,7 @@ using Taj_Plazza_CrudII.Models;
 
 namespace Taj_Plazza_CrudII.Repertory
 {
-    public class ClientRepertory :IclientRepertory
+    public class ClientRepertory : IClientRepertory
     {
         private readonly ApplicationDbContext dbContext;
 

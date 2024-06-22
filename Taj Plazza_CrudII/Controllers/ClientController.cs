@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Taj_Plazza_CrudII.Interface;
 using Taj_Plazza_CrudII.Models;
-using Taj_Plazza_CrudII.Services;
 
 namespace Taj_Plazza_CrudII.Controllers
 {
@@ -11,10 +9,10 @@ namespace Taj_Plazza_CrudII.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly IclientRepertory iclientRepertory;
+        private readonly IClientRepertory iclientRepertory;
         private readonly IMapper mapper;
 
-        public ClientController(IclientRepertory iclientRepertory,IMapper mapper)
+        public ClientController(IClientRepertory iclientRepertory,IMapper mapper)
         {
             this.iclientRepertory = iclientRepertory;
             this.mapper = mapper;
