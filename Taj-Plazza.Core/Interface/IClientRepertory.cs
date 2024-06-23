@@ -1,6 +1,7 @@
-﻿using Taj_Plazza_CrudII.Models;
+﻿
+using Taj_Plazza.Core.Models;
 
-namespace Taj_Plazza_CrudII.Interface
+namespace Taj_Plazza.Core.Interface
 {
     public interface IClientRepertory
     {

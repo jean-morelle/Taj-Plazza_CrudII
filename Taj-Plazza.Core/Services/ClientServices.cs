@@ -1,24 +1,24 @@
-﻿using Taj_Plazza_CrudII.Models;
+﻿
+using Taj_Plazza.Core.Models;
 
-namespace Taj_Plazza_CrudII.Services
+namespace Taj_Plazza.Core.Services
 {
-    public class ClientServices :IclientServices
-    {
-        private readonly IclientServices iclientServices;
+    public class ClientServices {
+      //  private readonly IClientServices iclientServices;
 
-        public ClientServices( IclientServices iclientServices)
+        public ClientServices()
         {
-            this.iclientServices = iclientServices;
+            //this.iclientServices = iclientServices;
         }
 
-        public async Task<IEnumerable<Client>> GetAll()
-        {
-            return await iclientServices.GetAll();
-        }
+        //public async Task<IEnumerable<Client>> GetAll()
+        //{
+        //    return await iclientServices.GetAll();
+        //}
 
-        public async Task<Client> GetById(int id)
-        {
-            return await iclientServices.GetById(id);
-        }
+        //public async Task<Client> GetById(int id)
+        //{
+        //    return await iclientServices.GetById(id);
+        //}
     }
 }

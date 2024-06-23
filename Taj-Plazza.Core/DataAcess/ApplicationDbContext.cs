@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Taj_Plazza_CrudII.Models;
+using Taj_Plazza.Core.Models;
 
-namespace Taj_Plazza_CrudII.DataAcess
+namespace Taj_Plazza.Core.DataAcess
 {
     public class ApplicationDbContext :DbContext
     {
@@ -22,10 +22,10 @@ namespace Taj_Plazza_CrudII.DataAcess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuration de la relation one-to-many entre Client et Reservation
-            modelBuilder.Entity<Client>()
-                .HasMany(c => c.Reservations)
-                .WithOne(r => r.Client)
-                .HasForeignKey(r => r.ClientId);
+            //modelBuilder.Entity<Client>()
+            //    .HasMany(c => c.Reservations)
+            //    .WithOne(r => r.Client)
+            //    .HasForeignKey(r => r.ClientId);
                 
 
             // Configuration de la relation one-to-many entre Categorie et OptionAjouter

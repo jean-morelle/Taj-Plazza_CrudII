@@ -1,4 +1,4 @@
-﻿namespace Taj_Plazza_CrudII.Models;
+﻿namespace Taj_Plazza.Core.Models;
 
 public enum ReservationStatus
 {

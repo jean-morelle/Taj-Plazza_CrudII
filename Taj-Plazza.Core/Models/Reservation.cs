@@ -1,10 +1,8 @@
-﻿namespace Taj_Plazza_CrudII.Models;
+﻿namespace Taj_Plazza.Core.Models;
 
 public class Reservation
 {
     public int Id { get; set; }
-
-    public int ClientId { get; set; }
 
     public ReservationStatus Status { get; set; }
          

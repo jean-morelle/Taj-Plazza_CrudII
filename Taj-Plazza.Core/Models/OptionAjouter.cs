@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Taj_Plazza_CrudII.Models;
+namespace Taj_Plazza.Core.Models;
 
 public class OptionAjouter
 {

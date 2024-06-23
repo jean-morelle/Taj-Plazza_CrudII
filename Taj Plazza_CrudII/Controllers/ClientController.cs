@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Taj_Plazza_CrudII.Interface;
-using Taj_Plazza_CrudII.Models;
+using Taj_Plazza.Core.Interface;
+using Taj_Plazza.Core.Models;
 
 namespace Taj_Plazza_CrudII.Controllers
 {

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Taj_Plazza_CrudII.DataAcess;
-using Taj_Plazza_CrudII.Interface;
-using Taj_Plazza_CrudII.Repertory;
+using Taj_Plazza.Core.DataAcess;
+using Taj_Plazza.Core.Interface;
+using Taj_Plazza.Core.Repertory;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
