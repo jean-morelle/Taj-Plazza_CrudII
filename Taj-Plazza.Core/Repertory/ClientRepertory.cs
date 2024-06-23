@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Taj_Plazza_CrudII.DataAcess;
-using Taj_Plazza_CrudII.Interface;
-using Taj_Plazza_CrudII.Models;
+using Taj_Plazza.Core.DataAcess;
+using Taj_Plazza.Core.Interface;
+using Taj_Plazza.Core.Models;
 
-namespace Taj_Plazza_CrudII.Repertory
+namespace Taj_Plazza.Core.Repertory
 {
-    public class ClientRepertory :IclientRepertory
+    public class ClientRepertory : IClientRepertory
     {
         private readonly ApplicationDbContext dbContext;
 

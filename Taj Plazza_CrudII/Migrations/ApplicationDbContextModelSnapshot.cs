@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Taj_Plazza_CrudII.DataAcess;
+using Taj_Plazza.Core.DataAcess;
 
 #nullable disable
 

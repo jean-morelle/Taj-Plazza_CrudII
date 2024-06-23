@@ -1,9 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Taj_Plazza_CrudII.DataAcess;
-using Taj_Plazza_CrudII.Interface;
-using Taj_Plazza_CrudII.Repertory;
-using Taj_Plazza_CrudII.Services;
+using Taj_Plazza.Core.DataAcess;
+using Taj_Plazza.Core.Interface;
+using Taj_Plazza.Core.Repertory;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -13,7 +11,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IclientRepertory,ClientRepertory>();
+builder.Services.AddScoped<IClientRepertory,ClientRepertory>();
 ////builder.Services.AddScoped<IclientServices, ClientServices>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddEndpointsApiExplorer();

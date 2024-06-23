@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Taj_Plazza_CrudII.Dto;
-using Taj_Plazza_CrudII.Models;
+using Taj_Plazza.Core.Models;
+using Taj_Plazza.Core.Models.Dto;
 
-namespace Taj_Plazza_CrudII.Profiles
+namespace TTaj_Plazza.Core.Models.Profiles
 {
     public class ClientProfile :Profile
     {
