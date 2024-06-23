@@ -3,24 +3,10 @@
 public class Reservation
 {
     public int Id { get; set; }
-
-    public ReservationStatus Status { get; set; }
-         
-    public DateTimeOffset DateDeReservation { get; set; }
-    
-    public string NomEvenement { get; set; }
-
-    public string LieuEvenement { get; set; }
-
-    public string Description { get; set; }
-
-    public string Organisateur { get; set; }
-
-    public DateTimeOffset DateEvenement { get; set; }
-
+    public int EvenementId { get; set; }
+    public Evenement Evenement { get; set; }
+    public int UtilisateurId { get; set; }
+    public Utilisateur Utilisateur { get; set; }
     public int NombreDePersonne { get; set; }
-  
-    public ICollection<ReservationOptionAjouter>? ReservationOptionAjouters { get; set; }
-
-
+    public DateTimeOffset DateDeReservation { get; set; }
 }

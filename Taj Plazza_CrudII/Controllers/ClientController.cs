@@ -81,9 +81,8 @@ namespace Taj_Plazza_CrudII.Controllers
             }
 
             existingClient.Id = clientModel.Id;
-            existingClient.Nom = clientModel.Nom;
-            existingClient.Prenom = clientModel.Prenom;
-            existingClient.Num_Telephone = clientModel.Num_Telephone;
+            existingClient.NomComplete = clientModel.NomComplete;
+            existingClient.Telephone = clientModel.Telephone;
             existingClient.Domicile = clientModel.Domicile;
             existingClient.Reservations = clientModel.Reservations;
 

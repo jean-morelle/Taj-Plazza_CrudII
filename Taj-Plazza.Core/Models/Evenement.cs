@@ -3,24 +3,18 @@
     public class Evenement
     {
         public int Id { get; set; }
-
         public int ClientId { get; set; }
-
-        public Status Status { get; set; }
-
-        public DateTimeOffset DateDeReservation { get; set; }
-
+        public Client Client { get; set; }
+        public ReservationStatus Status { get; set; }
+        
         public string NomEvenement { get; set; }
 
-        public string LieuEvenement { get; set; }
-
         public string Description { get; set; }
+        
+        public DateTimeOffset DateDebut { get; set; }
 
-        public string Organisateur { get; set; }
+        public DateTimeOffset DateFin { get; set; }
 
-        public DateTimeOffset DateEvenement { get; set; }
-
-        public int NombreDePersonne { get; set; }
-
+        public string Place { get; set; }
     }
 }

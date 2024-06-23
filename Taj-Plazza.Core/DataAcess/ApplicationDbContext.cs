@@ -9,16 +9,16 @@ namespace Taj_Plazza.Core.DataAcess
         {
         }
 
-        public DbSet<Categorie>? Categories { get; set; }
+        public DbSet<Evenement> Evenements { get; set; }
 
-        public DbSet<Client>? Clients { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
-        public DbSet<Reservation>? Reservations { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
 
-        public DbSet<OptionAjouter>? Options { get; set; }
-
-        public DbSet<ReservationOptionAjouter>? ReservationOptionAjouters { get; set; }
-
+        public DbSet<EvenementReserver> EvenementReservers { get; set; }
+     
+        public DbSet<Utilisateur> Utilisateurs { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuration de la relation one-to-many entre Client et Reservation
@@ -29,24 +29,24 @@ namespace Taj_Plazza.Core.DataAcess
                 
 
             // Configuration de la relation one-to-many entre Categorie et OptionAjouter
-            modelBuilder.Entity<Categorie>()
-                .HasMany(c => c.OptionAjouters)
-                .WithOne(o => o.categorie)
-                .HasForeignKey(o => o.CategorieId);
+            //modelBuilder.Entity<Categorie>()
+            //    .HasMany(c => c.OptionAjouters)
+            //    .WithOne(o => o.categorie)
+            //    .HasForeignKey(o => o.CategorieId);
 
-            // Configuration de la relation many-to-many entre Reservation et OptionAjouter
-            modelBuilder.Entity<ReservationOptionAjouter>()
-                .HasKey(ro => new { ro.ReservationId, ro.OptionAjouterId });
+            //// Configuration de la relation many-to-many entre Reservation et OptionAjouter
+            //modelBuilder.Entity<ReservationOptionAjouter>()
+            //    .HasKey(ro => new { ro.ReservationId, ro.OptionAjouterId });
 
-            modelBuilder.Entity<ReservationOptionAjouter>()
-                .HasOne(ro => ro.Reservation)
-                .WithMany(r => r.ReservationOptionAjouters)
-                .HasForeignKey(ro => ro.ReservationId);
+            //modelBuilder.Entity<ReservationOptionAjouter>()
+            //    .HasOne(ro => ro.Reservation)
+            //    .WithMany(r => r.ReservationOptionAjouters)
+            //    .HasForeignKey(ro => ro.ReservationId);
 
-            modelBuilder.Entity<ReservationOptionAjouter>()
-                .HasOne(ro => ro.OptionAjouter)
-                .WithMany(o => o.reservation_OptionAjouters)
-                .HasForeignKey(ro => ro.OptionAjouterId);
+            //modelBuilder.Entity<ReservationOptionAjouter>()
+            //    .HasOne(ro => ro.OptionAjouter)
+            //    .WithMany(o => o.reservation_OptionAjouters)
+            //    .HasForeignKey(ro => ro.OptionAjouterId);
         }
     }
 }
