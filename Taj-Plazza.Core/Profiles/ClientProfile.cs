@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Taj_Plazza.Core.DTOs;
 using Taj_Plazza.Core.Models;
-using Taj_Plazza.Core.Models.Dto;
 
 namespace TTaj_Plazza.Core.Models.Profiles
 {

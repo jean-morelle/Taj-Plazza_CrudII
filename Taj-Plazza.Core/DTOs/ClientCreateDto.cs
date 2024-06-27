@@ -1,4 +1,4 @@
-﻿namespace Taj_Plazza.Core.Models.Dto
+﻿namespace Taj_Plazza.Core.DTOs
 {
     public class ClientCreateDto
     {
