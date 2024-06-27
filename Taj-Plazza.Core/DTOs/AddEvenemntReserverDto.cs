@@ -5,13 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Taj_Plazza.Core.Models;
 
-namespace Taj_Plazza.Core.DTOs.EvenementReserverDto
+namespace Taj_Plazza.Core.DTOs
 {
-    public class ReadEvenementReserverDto
+    public class AddEvenemntReserverDto
     {
-        public int Id { get; set; }
-        public int EvenementId { get; set; }
-        public Evenement Evenement { get; set; }
         public DateTimeOffset DateDebut { get; set; }
         public DateTimeOffset? DateFin { get; set; }
         public string Activites { get; set; }

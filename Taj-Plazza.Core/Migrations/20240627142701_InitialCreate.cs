@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TajPlazza.Core.Migrations
 {
     /// <inheritdoc />
-    public partial class initialcreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,7 +53,7 @@ namespace TajPlazza.Core.Migrations
                     NomEvenement = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateDebut = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    DateFin = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    DateFin = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     Place = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

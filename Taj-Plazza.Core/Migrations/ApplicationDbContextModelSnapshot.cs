@@ -61,7 +61,7 @@ namespace TajPlazza.Core.Migrations
                     b.Property<DateTimeOffset>("DateDebut")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTimeOffset>("DateFin")
+                    b.Property<DateTimeOffset?>("DateFin")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")

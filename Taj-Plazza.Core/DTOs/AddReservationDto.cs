@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Taj_Plazza.Core.Models;
 
-namespace Taj_Plazza.Core.DTOs.ReservationDto
+namespace Taj_Plazza.Core.DTOs
 {
-    public  class AddReservationDto
+    public class AddReservationDto
     {
         public int NombreDePersonne { get; set; }
         public DateTimeOffset DateDeReservation { get; set; }

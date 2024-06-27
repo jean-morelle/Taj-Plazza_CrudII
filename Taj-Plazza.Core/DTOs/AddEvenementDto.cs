@@ -5,16 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Taj_Plazza.Core.Models;
 
-namespace Taj_Plazza.Core.DTOs.EvenementDto
+namespace Taj_Plazza.Core.DTOs
 {
-    public  class ReadEvenementDto
+    public class AddEvenementDto
     {
-
-        public int Id { get; set; }
-        public int ClientId { get; set; }
-        public Client Client { get; set; }
-        public ReservationStatus Status { get; set; }
-
         public string NomEvenement { get; set; }
 
         public string Description { get; set; }

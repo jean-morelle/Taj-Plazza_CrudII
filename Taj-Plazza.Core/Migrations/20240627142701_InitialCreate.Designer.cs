@@ -12,8 +12,8 @@ using Taj_Plazza.Core.DataAcess;
 namespace TajPlazza.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240625110215_initialcreate")]
-    partial class initialcreate
+    [Migration("20240627142701_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,7 +64,7 @@ namespace TajPlazza.Core.Migrations
                     b.Property<DateTimeOffset>("DateDebut")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTimeOffset>("DateFin")
+                    b.Property<DateTimeOffset?>("DateFin")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")

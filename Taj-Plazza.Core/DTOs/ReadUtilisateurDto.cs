@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Taj_Plazza.Core.DTOs.UtilisateurDto
+namespace Taj_Plazza.Core.DTOs
 {
-    public class AddUtilisateurDto
+    public class ReadUtilisateurDto
     {
+        public int Id { get; set; }
         public string Nom { get; set; }
         public string Role { get; set; }
         public string Email { get; set; }

@@ -26,12 +26,12 @@ namespace Taj_Plazza.Core.Repertory
 
             if (removeOfclient != null)
             {
-                dbContext.Remove(clientId);
+                dbContext.Clients.Remove(removeOfclient);
                 await  dbContext.SaveChangesAsync();
             }
             else
             {
-                throw new Exception();
+                throw new Exception("client not found");
             }
         }
 

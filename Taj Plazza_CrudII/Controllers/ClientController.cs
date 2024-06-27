@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Taj_Plazza.Core.DTOs.ClientDto;
+using Taj_Plazza.Core.DTOs;
 using Taj_Plazza.Core.Interface;
 using Taj_Plazza.Core.Models;
 

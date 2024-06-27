@@ -8,7 +8,7 @@ using Taj_Plazza.Core.Models;
 
 namespace Taj_Plazza.Core.Services
 {
-    public class ClientServices: IClientRepertory
+    public class ClientServices : IClientServices
     {
         private readonly IClientRepertory clientRepertory;
 
@@ -34,7 +34,8 @@ namespace Taj_Plazza.Core.Services
 
         public Task<Client> GetById(int clientId)
         {
-            throw new NotImplementedException();
+            var client = clientRepertory.GetById(clientId);
+            return client;
         }
 
         public Task<Client> GetByName(string name)
