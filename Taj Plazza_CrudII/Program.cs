@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Taj_Plazza.Core.DataAcess;
 using Taj_Plazza.Core.Interface;
 using Taj_Plazza.Core.Repertory;
+using Taj_Plazza.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -12,7 +13,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IClientRepertory,ClientRepertory>();
-////builder.Services.AddScoped<IclientServices, ClientServices>();
+//builder.Services.AddScoped<IClientRepertory,ClientServices>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

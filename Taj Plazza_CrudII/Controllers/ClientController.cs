@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Taj_Plazza.Core.DTOs.ClientDto;
 using Taj_Plazza.Core.Interface;
 using Taj_Plazza.Core.Models;
 
@@ -9,103 +11,66 @@ namespace Taj_Plazza_CrudII.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly IClientRepertory iclientRepertory;
+        private readonly IClientRepertory repertory;
         private readonly IMapper mapper;
 
-        public ClientController(IClientRepertory iclientRepertory,IMapper mapper)
+        public ClientController( IClientRepertory repertory,IMapper mapper)
         {
-            this.iclientRepertory = iclientRepertory;
+            this.repertory = repertory;
             this.mapper = mapper;
         }
 
-        [HttpGet("Required ClientAll")]
-
-        public async Task<IActionResult> GetAll() {
-
-            await Task.Delay(1000);
-            var Getclients = await iclientRepertory.GetAll();
-            return Ok(Getclients);
-        
-        }
-
-        [HttpGet("Required CliendById")]
-
-        public async Task<IActionResult>GetById(int clientId)
+        [HttpGet("Get Client")]
+        public async Task<IActionResult> GetClientAll()
         {
-            await Task.Delay(1000);
-            var GetclientById = await iclientRepertory.GetById(clientId);
-
-            if (GetclientById != null)
-            {
-                return Ok(GetclientById);
-            }
-            else
-            {
-                throw new Exception();
-            }
-        }
-
-        [HttpPost("Add-client")]
-        public async Task<IActionResult> Create(Client newclient)
-        {
-            var clientModel = mapper.Map<Client>(newclient);
             try
             {
-                var existingClient = await iclientRepertory.GetById(clientModel.Id);
-                if (existingClient != null)
-                {
-                    return Conflict("Cet utilisateur avec le même nom existe");
-                }
-                else
-                {
-                    await iclientRepertory.Create(clientModel);
-                    return CreatedAtAction(nameof(GetById), new { clienId = clientModel.Id }, clientModel);
-                }
+                var clients = await repertory.GetAll();
+                var clientDtos =  mapper.Map<IEnumerable<ReadClientDto>>(clients);
+                return Ok(clientDtos);
             }
             catch (Exception ex)
             {
-                // Gérez l'exception ici (par exemple, journalisation ou renvoi d'une réponse d'erreur)
-                return StatusCode(500, "Une erreur s'est produite lors de la création de l'utilisateur.");
-            }
-        }
-        [HttpPatch ("Update client")]
-        public async Task<IActionResult> Update(Client newclient) {
-
-            var clientModel = mapper.Map<Client>(newclient);
-
-            var existingClient = await iclientRepertory.GetById(clientModel.Id);
-
-            if (existingClient == null)
-            {
-                return Conflict("Cet utilisateur avec le même nom existe");
-            }
-
-            existingClient.Id = clientModel.Id;
-            existingClient.NomComplete = clientModel.NomComplete;
-            existingClient.Telephone = clientModel.Telephone;
-            existingClient.Domicile = clientModel.Domicile;
-            existingClient.Reservations = clientModel.Reservations;
-
-           await iclientRepertory.Update(clientModel);
-           return Ok("L'utilisateur a été mis à jour avec succès.");
+                // Gérez l'exception ici (par exemple, en renvoyant un code d'erreur approprié).
+                return StatusCode(500, "Erreur lors de la récupération des clients.");
+            }  
         }
 
-        [HttpDelete ("Delete client")]
-
-        public  async Task<IActionResult> Delete(int clientId)
+        [HttpGet("{id}", Name = "GetClient")]
+        public async Task<ActionResult<ReadClientDto>> GetClientById(int id)
         {
-            var existingClient = await iclientRepertory.GetById(clientId);
+            var client = await repertory.GetById(id);
 
-            if(existingClient is null)
+            if (client == null)
             {
                 return NotFound();
             }
 
-            else
+            var clientDto = mapper.Map<ReadClientDto>(client);
+
+            return Ok(clientDto);
+        }
+
+
+        [HttpPost("AddClient")]
+        public async Task<ActionResult<ReadClientDto>> AddClient(AddClientDto client)
+        {
+           // Vérifiez si le nom du client existe déjà dans la base de données
+
+            var existingClient = await repertory.GetByName(client.NomComplete);
+            if (existingClient != null)
             {
-               await iclientRepertory.Delete(clientId);
-                return NoContent();
+                // Le client existe déjà, vous pouvez renvoyer un message d'erreur approprié
+                return BadRequest("Le client avec ce nom existe déjà.");
             }
+
+            // Si le client n'existe pas, ajoutez-le à la base de données
+            var clientModel = mapper.Map<Client>(client);
+            await repertory.Create(clientModel);
+            var clientReadDto = mapper.Map<ReadClientDto>(clientModel);
+            return CreatedAtAction(nameof(GetClientById), new { id = clientReadDto.Id }, clientReadDto);
+        }
+
         }
     }
-}
+

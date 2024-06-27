@@ -9,6 +9,8 @@ namespace Taj_Plazza.Core.Interface
 
         Task<Client> GetById(int clientId);
 
+        Task<Client> GetByName(string name);
+
         Task Delete(int clientId);
 
         Task Create(Client client);

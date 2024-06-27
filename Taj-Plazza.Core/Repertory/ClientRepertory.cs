@@ -45,10 +45,17 @@ namespace Taj_Plazza.Core.Repertory
             return await dbContext.Clients.FindAsync(clientId);
         }
 
+        public async Task<Client> GetByName(string name)
+        {
+            return await dbContext.Clients.FirstOrDefaultAsync(c => c.NomComplete == name);
+        }
+
         public async Task Update(Client client)
         {
             dbContext.Clients.Update(client);
             await dbContext.SaveChangesAsync();
         }
+
     }
+
 }

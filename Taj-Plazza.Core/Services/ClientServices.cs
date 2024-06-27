@@ -1,24 +1,50 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Taj_Plazza.Core.Interface;
 using Taj_Plazza.Core.Models;
 
 namespace Taj_Plazza.Core.Services
 {
-    public class ClientServices {
-      //  private readonly IClientServices iclientServices;
+    public class ClientServices: IClientRepertory
+    {
+        private readonly IClientRepertory clientRepertory;
 
-        public ClientServices()
+        public ClientServices(IClientRepertory clientRepertory)
         {
-            //this.iclientServices = iclientServices;
+            this.clientRepertory = clientRepertory;
         }
 
-        //public async Task<IEnumerable<Client>> GetAll()
-        //{
-        //    return await iclientServices.GetAll();
-        //}
+        public Task Create(Client client)
+        {
+            throw new NotImplementedException();
+        }
 
-        //public async Task<Client> GetById(int id)
-        //{
-        //    return await iclientServices.GetById(id);
-        //}
+        public Task Delete(int clientId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Client>> GetAll()
+        {
+           return this.clientRepertory.GetAll();
+        }
+
+        public Task<Client> GetById(int clientId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Client> GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(Client client)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
