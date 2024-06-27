@@ -12,7 +12,7 @@ using Taj_Plazza.Core.DataAcess;
 namespace TajPlazza.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240627142701_InitialCreate")]
+    [Migration("20240627144053_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
