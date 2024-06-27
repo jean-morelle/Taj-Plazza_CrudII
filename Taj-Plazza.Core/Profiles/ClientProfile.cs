@@ -2,7 +2,7 @@
 using Taj_Plazza.Core.DTOs;
 using Taj_Plazza.Core.Models;
 
-namespace TTaj_Plazza.Core.Models.Profiles
+namespace Taj_Plazza.Core.Profiles
 {
     public class ClientProfile :Profile
     {
