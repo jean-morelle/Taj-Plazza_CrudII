@@ -17,14 +17,14 @@ namespace Taj_Plazza.Core.Services
             this.clientRepertory = clientRepertory;
         }
 
-        public Task Create(Client client)
+        public async Task Create(Client client)
         {
-            throw new NotImplementedException();
+            await  clientRepertory.Create();
         }
 
-        public Task Delete(int clientId)
+        public async Task Delete(int clientId)
         {
-            throw new NotImplementedException();
+           await  clientRepertory.Delete();
         }
 
         public Task<IEnumerable<Client>> GetAll()
@@ -38,14 +38,15 @@ namespace Taj_Plazza.Core.Services
             return client;
         }
 
-        public Task<Client> GetByName(string name)
+        public async Task<Client> GetByName(string name)
         {
-            throw new NotImplementedException();
+            await clientRepertory.GetByName();
         }
 
-        public Task Update(Client client)
+        public async Task Update(Client client)
         {
-            throw new NotImplementedException();
+           await clientRepertory.Update();
+            
         }
     }
 }
