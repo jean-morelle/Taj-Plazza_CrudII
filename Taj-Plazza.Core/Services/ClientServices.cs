@@ -40,7 +40,8 @@ namespace Taj_Plazza.Core.Services
 
         public async Task<Client> GetByName(string name)
         {
-            await clientRepertory.GetByName(name);
+            var client = await clientRepertory.GetByName(name);
+            return client;
         }
 
         public async Task Update(Client client)

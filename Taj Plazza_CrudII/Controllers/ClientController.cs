@@ -10,12 +10,12 @@ namespace Taj_Plazza_CrudII.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly IClientRepertory repertory;
+        private readonly IClientServices services;
         private readonly IMapper mapper;
 
-        public ClientController( IClientRepertory repertory,IMapper mapper)
+        public ClientController( IClientServices services,IMapper mapper)
         {
-            this.repertory = repertory;
+            this.services = services;
             this.mapper = mapper;
         }
 
@@ -24,11 +24,11 @@ namespace Taj_Plazza_CrudII.Controllers
         {
             try
             {
-                var clients = await repertory.GetAll();
+                var clients = await services.GetAll();
                 var clientDtos =  mapper.Map<IEnumerable<ReadClientDto>>(clients);
                 return Ok(clientDtos);
             }
-            catch (Exception ex)
+            catch
             {
                 // Gérez l'exception ici (par exemple, en renvoyant un code d'erreur approprié).
                 return StatusCode(500, "Erreur lors de la récupération des clients.");
@@ -38,12 +38,7 @@ namespace Taj_Plazza_CrudII.Controllers
         [HttpGet("{id}", Name = "GetClient")]
         public async Task<ActionResult<ReadClientDto>> GetClientById(int id)
         {
-            var client = await repertory.GetById(id);
-
-            if (client == null)
-            {
-                return NotFound();
-            }
+            var client = await services.GetById(id);
 
             var clientDto = mapper.Map<ReadClientDto>(client);
 
@@ -56,7 +51,7 @@ namespace Taj_Plazza_CrudII.Controllers
         {
            // Vérifiez si le nom du client existe déjà dans la base de données
 
-            var existingClient = await repertory.GetByName(client.NomComplete);
+            var existingClient = await services.GetByName(client.NomComplete);
             if (existingClient != null)
             {
                 // Le client existe déjà, vous pouvez renvoyer un message d'erreur approprié
@@ -65,11 +60,11 @@ namespace Taj_Plazza_CrudII.Controllers
 
             // Si le client n'existe pas, ajoutez-le à la base de données
             var clientModel = mapper.Map<Client>(client);
-            await repertory.Create(clientModel);
+            await services.Create(clientModel);
             var clientReadDto = mapper.Map<ReadClientDto>(clientModel);
             return CreatedAtAction(nameof(GetClientById), new { id = clientReadDto.Id }, clientReadDto);
         }
-
-        }
     }
+}
+
 
