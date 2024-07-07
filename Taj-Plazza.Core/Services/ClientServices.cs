@@ -19,12 +19,12 @@ namespace Taj_Plazza.Core.Services
 
         public async Task Create(Client client)
         {
-            await  clientRepertory.Create();
+            await  clientRepertory.Create(client);
         }
 
         public async Task Delete(int clientId)
         {
-           await  clientRepertory.Delete();
+           await  clientRepertory.Delete(clientId);
         }
 
         public Task<IEnumerable<Client>> GetAll()
@@ -40,12 +40,12 @@ namespace Taj_Plazza.Core.Services
 
         public async Task<Client> GetByName(string name)
         {
-            await clientRepertory.GetByName();
+            await clientRepertory.GetByName(name);
         }
 
         public async Task Update(Client client)
         {
-           await clientRepertory.Update();
+           await clientRepertory.Update(client);
             
         }
     }
