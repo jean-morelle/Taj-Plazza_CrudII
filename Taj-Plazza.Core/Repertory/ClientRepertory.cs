@@ -42,12 +42,26 @@ namespace Taj_Plazza.Core.Repertory
 
         public async Task<Client> GetById(int clientId)
         {
-            return await dbContext.Clients.FindAsync(clientId);
+            var client = await dbContext.Clients.FindAsync(clientId);
+
+            if (client != null)
+            {
+                return client;
+            }
+
+            throw new Exception("client not found!");
         }
 
         public async Task<Client> GetByName(string name)
         {
-            return await dbContext.Clients.FirstOrDefaultAsync(c => c.NomComplete == name);
+            var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.NomComplete == name);
+            
+            if (client != null)
+            {
+                return client;
+            }
+
+            throw new Exception("client not found!");
         }
 
         public async Task Update(Client client)
