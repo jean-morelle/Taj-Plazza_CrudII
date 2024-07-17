@@ -3,10 +3,11 @@
 public class Reservation
 {
     public int Id { get; set; }
-    public int EvenementId { get; set; }
-    public Evenement Evenement { get; set; }
-    public int UtilisateurId { get; set; }
-    public Utilisateur Utilisateur { get; set; }
-    public int NombreDePersonne { get; set; }
-    public DateTimeOffset DateDeReservation { get; set; }
+    public string AccessoireAjouter { get; set; }
+    public string Desciption { get; set; }
+    public decimal Prix { get; set; }
+    public string ImageURl { get; set; } = "https://via.placeholder.com/300x300";
+    public int Quantite { get; set; }
+    public int CategorieId { get; set; }
+    public Categorie Categorie { get; set; }
 }

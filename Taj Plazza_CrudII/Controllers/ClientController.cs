@@ -13,13 +13,13 @@ namespace Taj_Plazza_CrudII.Controllers
         private readonly IClientServices services;
         private readonly IMapper mapper;
 
-        public ClientController( IClientServices services,IMapper mapper)
+        public ClientController( IClientServices services, IMapper mapper)
         {
             this.services = services;
             this.mapper = mapper;
         }
 
-        [HttpGet("Get Client")]
+        [HttpGet]
         public async Task<IActionResult> GetClientAll()
         {
             try
@@ -28,25 +28,31 @@ namespace Taj_Plazza_CrudII.Controllers
                 var clientDtos =  mapper.Map<IEnumerable<ReadClientDto>>(clients);
                 return Ok(clientDtos);
             }
-            catch
+            catch(Exception e)
             {
                 // Gérez l'exception ici (par exemple, en renvoyant un code d'erreur approprié).
-                return StatusCode(500, "Erreur lors de la récupération des clients.");
+                return StatusCode(500, e.Message);
             }  
         }
 
-        [HttpGet("{id}", Name = "GetClient")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<ReadClientDto>> GetClientById(int id)
         {
-            var client = await services.GetById(id);
+            try
+            {
+                var client = await services.GetById(id);
 
-            var clientDto = mapper.Map<ReadClientDto>(client);
+                var clientDto = mapper.Map<ReadClientDto>(client);
 
-            return Ok(clientDto);
+                return Ok(clientDto);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-
-        [HttpPost("AddClient")]
+        [HttpPost]
         public async Task<ActionResult<ReadClientDto>> AddClient(AddClientDto client)
         {
            // Vérifiez si le nom du client existe déjà dans la base de données
@@ -60,9 +66,54 @@ namespace Taj_Plazza_CrudII.Controllers
 
             // Si le client n'existe pas, ajoutez-le à la base de données
             var clientModel = mapper.Map<Client>(client);
+
             await services.Create(clientModel);
+
             var clientReadDto = mapper.Map<ReadClientDto>(clientModel);
+
             return CreatedAtAction(nameof(GetClientById), new { id = clientReadDto.Id }, clientReadDto);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ReadClientDto>> DeleteClientById(int id)
+        {
+            try
+            {
+                var client = await services.GetById(id);
+
+                await services.Delete(client.Id);
+
+                var clientDto = mapper.Map<ReadClientDto>(client);
+
+                return Ok(clientDto);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ReadClientDto>> UpdateClientById(int id, UpdateClientDto updateClient)
+        {
+            try
+            {
+                if (id != updateClient.Id)
+                {
+                    BadRequest();
+                }
+                var client = mapper.Map<Client>(updateClient);
+
+                await services.Update(client);
+
+                var successClientUpdated = mapper.Map<ReadClientDto>(client);
+
+                return Ok(successClientUpdated);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }

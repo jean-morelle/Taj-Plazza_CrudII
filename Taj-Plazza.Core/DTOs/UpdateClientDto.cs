@@ -1,7 +1,9 @@
 ﻿namespace Taj_Plazza.Core.DTOs
 {
-    public class AddClientDto
+    public class UpdateClientDto
     {
+        public int Id { get; set; }
+
         public string NomComplete { get; set; }
 
         public string Domicile { get; set; }

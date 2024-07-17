@@ -2,12 +2,11 @@
 {
     public class EvenementReserver
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public int EvenementId { get; set; }
         public Evenement Evenement { get; set; }
-        public DateTimeOffset DateDebut { get; set; }
-        public DateTimeOffset? DateFin { get; set; }
-        public string Activites { get; set; }
-        public string LieuEvenement { get; set; }
+        public int ReservationId { get; set; }
+        public Reservation Reservation { get; set; }
+        public int NombreDePersonne { get; set; }
     }
 }

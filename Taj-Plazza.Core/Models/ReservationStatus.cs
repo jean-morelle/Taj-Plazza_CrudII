@@ -5,4 +5,5 @@ public enum ReservationStatus
     Réservation = 0,
     Confirmation = 1,
     Annulation = 2,
+    Cloturer = 3
 }

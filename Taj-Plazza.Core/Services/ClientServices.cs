@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Taj_Plazza.Core.Interface;
+﻿using Taj_Plazza.Core.Interface;
 using Taj_Plazza.Core.Models;
 
 namespace Taj_Plazza.Core.Services
@@ -47,7 +42,6 @@ namespace Taj_Plazza.Core.Services
         public async Task Update(Client client)
         {
            await clientRepertory.Update(client);
-            
         }
     }
 }

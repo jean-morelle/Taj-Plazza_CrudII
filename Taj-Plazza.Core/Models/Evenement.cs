@@ -8,8 +8,10 @@
         public ReservationStatus Status { get; set; }
         public string NomEvenement { get; set; }
         public string Description { get; set; }
+        public int NombreDePersonne { get; set; }
         public DateTimeOffset DateDebut { get; set; }
         public DateTimeOffset? DateFin { get; set; }
-        public string Place { get; set; }
+        public string? Place { get; set; }
+        public string? NoteASavoir { get; set; }
     }
 }
