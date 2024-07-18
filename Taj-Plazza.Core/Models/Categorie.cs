@@ -4,5 +4,6 @@
     {
         public int Id { get; set; }
         public string NomCategorie { get; set; }
+        public string? Icon { get; set; }
     }
 }
