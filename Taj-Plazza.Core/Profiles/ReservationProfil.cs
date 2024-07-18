@@ -11,9 +11,9 @@ namespace Taj_Plazza.Core.Profiles
         {
             // --Source => Destination
 
-            CreateMap<Reservation,AddReservationDto>();
+            //CreateMap<Reservation,AddReservationDto>();
 
-            CreateMap<Reservation,ReadReservationDto>();
+            //CreateMap<Reservation,ReadReservationDto>();
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Taj_Plazza.Core.Profiles
         {
             //-- Source => Destination
 
-            CreateMap<Utilisateur,AddUtilisateurDto>();
+            //CreateMap<Utilisateur,AddUtilisateurDto>();
 
-            CreateMap<Utilisateur, ReadUtilisateurDto>();
+            //CreateMap<Utilisateur, ReadUtilisateurDto>();
         }
     }
 }

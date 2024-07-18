@@ -18,5 +18,10 @@ namespace Taj_Plazza.Core.DataAcess
         public DbSet<EvenementReserver> EvenementReservers { get; set; }
      
         public DbSet<Categorie> Categories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
     }
 }

@@ -1,6 +1,8 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Taj_Plazza.Core.DataAcess;
 using Taj_Plazza.Core.Interface;
+using Taj_Plazza.Core.Profiles;
 using Taj_Plazza.Core.Repertory;
 using Taj_Plazza.Core.Services;
 
@@ -18,6 +20,14 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new ClientProfil());
+});
+
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,5 +42,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+DbInitializer.EnsureSeedData(app);
 
 app.Run();

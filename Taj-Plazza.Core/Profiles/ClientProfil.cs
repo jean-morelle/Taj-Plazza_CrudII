@@ -10,7 +10,6 @@ namespace Taj_Plazza.Core.Profiles
         {
             //--Source => Destination
             CreateMap<AddClientDto, Client>();
-
             CreateMap<Client,ReadClientDto>();
 
         }
