@@ -12,7 +12,7 @@ using Taj_Plazza.Core.DataAcess;
 namespace TajPlazza.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240627144053_InitialCreate")]
+    [Migration("20240724120824_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,6 +24,26 @@ namespace TajPlazza.Core.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Taj_Plazza.Core.Models.Categorie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomCategorie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
 
             modelBuilder.Entity("Taj_Plazza.Core.Models.Client", b =>
                 {
@@ -37,8 +57,14 @@ namespace TajPlazza.Core.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NomComplete")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telephone")
@@ -75,8 +101,13 @@ namespace TajPlazza.Core.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("NombreDePersonne")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NoteASavoir")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Place")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
@@ -97,26 +128,20 @@ namespace TajPlazza.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Activites")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("DateDebut")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset?>("DateFin")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<int>("EvenementId")
                         .HasColumnType("int");
 
-                    b.Property<string>("LieuEvenement")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("NombreDePersonne")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservationId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EvenementId");
+
+                    b.HasIndex("ReservationId");
 
                     b.ToTable("EvenementReservers");
                 });
@@ -129,65 +154,38 @@ namespace TajPlazza.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ClientId")
+                    b.Property<string>("AccessoireAjouter")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CategorieId")
                         .HasColumnType("int");
 
-                    b.Property<DateTimeOffset>("DateDeReservation")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<string>("Desciption")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EvenementId")
-                        .HasColumnType("int");
+                    b.Property<string>("ImageURl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NombreDePersonne")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Prix")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UtilisateurId")
+                    b.Property<int>("Quantite")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("EvenementId");
-
-                    b.HasIndex("UtilisateurId");
+                    b.HasIndex("CategorieId");
 
                     b.ToTable("Reservations");
-                });
-
-            modelBuilder.Entity("Taj_Plazza.Core.Models.Utilisateur", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Utilisateurs");
                 });
 
             modelBuilder.Entity("Taj_Plazza.Core.Models.Evenement", b =>
                 {
                     b.HasOne("Taj_Plazza.Core.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("Evenements")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -203,35 +201,31 @@ namespace TajPlazza.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Taj_Plazza.Core.Models.Reservation", "Reservation")
+                        .WithMany()
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Evenement");
+
+                    b.Navigation("Reservation");
                 });
 
             modelBuilder.Entity("Taj_Plazza.Core.Models.Reservation", b =>
                 {
-                    b.HasOne("Taj_Plazza.Core.Models.Client", null)
-                        .WithMany("Reservations")
-                        .HasForeignKey("ClientId");
-
-                    b.HasOne("Taj_Plazza.Core.Models.Evenement", "Evenement")
+                    b.HasOne("Taj_Plazza.Core.Models.Categorie", "Categorie")
                         .WithMany()
-                        .HasForeignKey("EvenementId")
+                        .HasForeignKey("CategorieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Taj_Plazza.Core.Models.Utilisateur", "Utilisateur")
-                        .WithMany()
-                        .HasForeignKey("UtilisateurId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Evenement");
-
-                    b.Navigation("Utilisateur");
+                    b.Navigation("Categorie");
                 });
 
             modelBuilder.Entity("Taj_Plazza.Core.Models.Client", b =>
                 {
-                    b.Navigation("Reservations");
+                    b.Navigation("Evenements");
                 });
 #pragma warning restore 612, 618
         }

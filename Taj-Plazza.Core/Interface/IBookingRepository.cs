@@ -6,10 +6,10 @@ namespace Taj_Plazza.Core.Interface
     public interface IBookingRepository
     {
         Task<EvenementReserver> CreateBookingAsync(EvenementReserverToAddDto bookingAddDto);
-        Task<EvenementReserver> UpdateNbrDePersonneAsync(Guid id, EvenementReserverNbrPersonUpdateDto patchDoc);
-        Task<EvenementReserver> DeleteBookingAsync(Guid orderLineId);
-        Task<EvenementReserver> GetBookingByIdAsync(Guid id);
-        Task<IEnumerable<EvenementReserver>> GetBookingsReserverByClientIdAsync(Guid clientId);
+        Task<EvenementReserver> UpdateNbrDePersonneAsync(int id, EvenementReserverNbrPersonUpdateDto patchDoc);
+        Task<EvenementReserver> DeleteBookingByIdAsync(int evenReserverId);
+        Task<EvenementReserver> GetBookingByIdAsync(int id);
+        Task<IEnumerable<EvenementReserver>> GetBookingsReserverByClientIdAsync(int clientId);
         bool Save();
     }
 }
