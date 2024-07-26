@@ -16,17 +16,24 @@ namespace Taj_Plazza_CrudII.Controllers
             this.booking = booking;
         }
 
-        [HttpGet("{clientId}")]
-        public async Task<IActionResult> Get(int clientId)
-        {
-            
-                var bookings = await booking.GetBookingsReserverByClientIdAsync(clientId);
+        //[HttpGet("{clientId}")]
+        //public async Task<IActionResult> Get(int clientId)
+        //{
 
-    
-                // Retourner la liste des réservations trouvées avec un code 200 OK
-                return Ok(bookings);
-            
-           
+        //    var bookings = await booking.GetBookingsReserverByClientIdAsync(clientId);
+
+
+        //    // Retourner la liste des réservations trouvées avec un code 200 OK
+        //    return Ok(bookings);
+
+
+        //}
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var mm = await booking.GetBookingByIdAsync(id);
+            return Ok(mm);
         }
 
     }

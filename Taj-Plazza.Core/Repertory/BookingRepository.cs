@@ -15,9 +15,17 @@ public class BookingRepository : IBookingRepository
     {
         this.dbContext = dbContext;
     }
-    public Task<EvenementReserver> CreateBookingAsync(EvenementReserverToAddDto bookingAddDto)
+    public async Task<EvenementReserver> CreateBookingAsync(EvenementReserverToAddDto bookingAddDto)
     {
-        throw new NotImplementedException();
+        var evenementReserver = new EvenementReserver
+        {
+            EvenementId = bookingAddDto.EvenementId,
+            ReservationId = bookingAddDto.ReservationId,
+            NombreDePersonne = bookingAddDto.NombreDePersonne,
+        };
+        dbContext.EvenementReservers.Add(evenementReserver);
+        await dbContext.SaveChangesAsync();
+        return evenementReserver;
     }
 
     public Task<EvenementReserver> UpdateNbrDePersonneAsync(int id, EvenementReserverNbrPersonUpdateDto patchDoc)
@@ -27,26 +35,27 @@ public class BookingRepository : IBookingRepository
 
     public async Task<EvenementReserver> DeleteBookingByIdAsync(int evenReserverId)
     {
-    //    var evenReserver = await dbContext.EvenementReservers.FindAsync(evenReserverId);
+        var evenReserver = await dbContext.EvenementReservers.FindAsync(evenReserverId);
 
-    //    if (evenReserver != null)
-    //    {
+        if (evenReserver != null)
+        {
 
-    //        dbContext.EvenementReservers.Remove(evenReserver);
+            dbContext.EvenementReservers.Remove(evenReserver);
 
-    //        await dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
 
-    //    }
-    //    else
-    //    {
-    //        throw new Exception();
-    //    }
-     throw new NotImplementedException();
-}
+        }
+        else
+        {
+            throw new Exception("Not found !!!");
+        }
+        return null;
+    }
 
-public async Task<EvenementReserver> GetBookingByIdAsync(int id)
+     public async Task<EvenementReserver> GetBookingByIdAsync(int id)
     {
-        return await dbContext.EvenementReservers.FindAsync(id);
+        var reservation = await dbContext.EvenementReservers.Where(reservation => reservation.ReservationId == id).FirstOrDefaultAsync();
+        return  reservation;
     }
 
     public async Task<IEnumerable<EvenementReserver>> GetBookingsReserverByClientIdAsync(int clientId)
@@ -54,11 +63,13 @@ public async Task<EvenementReserver> GetBookingByIdAsync(int id)
     {
         // si je saisie l Id du client qui me sort les informations de la table d evenement et de reservation 
 
-        //var inputClientId = dbContext.Evenements.FirstOrDefaultAsync(evenement => evenement.ClientId == clientId);
-        //if (inputClientId is not null)
+        //var evenement = await dbContext.Evenements.FirstOrDefaultAsync(evenement => evenement.ClientId == clientId);
+        //if (evenement is not null)
         //{
-
-        //     return  await dbContext.EvenementReservers.ToListAsync();
+        //    var eventReservation = await dbContext.EvenementReservers
+        //        .Where(x => x.EvenementId == evenement.Id).Include(x => x.Reservation)
+        //        .ToListAsync();
+        //    return eventReservation;
         //}
 
         //else
