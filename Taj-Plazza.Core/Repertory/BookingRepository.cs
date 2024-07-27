@@ -28,9 +28,17 @@ public class BookingRepository : IBookingRepository
         return evenementReserver;
     }
 
-    public Task<EvenementReserver> UpdateNbrDePersonneAsync(int id, EvenementReserverNbrPersonUpdateDto patchDoc)
+    public async Task<EvenementReserver> UpdateNbrDePersonneAsync(int id, EvenementReserverNbrPersonUpdateDto patchDoc)
     {
-        throw new NotImplementedException();
+        var evenementReserver = await dbContext.EvenementReservers.FindAsync(id);
+
+        if(evenementReserver == null)
+        {
+            throw new KeyNotFoundException($"EvenementReserver with ID {id} not found.");
+        }
+        evenementReserver.NombreDePersonne = patchDoc.NombreDePersonne;
+        await dbContext.SaveChangesAsync();
+        return evenementReserver;
     }
 
     public async Task<EvenementReserver> DeleteBookingByIdAsync(int evenReserverId)
@@ -54,8 +62,8 @@ public class BookingRepository : IBookingRepository
 
      public async Task<EvenementReserver> GetBookingByIdAsync(int id)
     {
-        var reservation = await dbContext.EvenementReservers.Where(reservation => reservation.ReservationId == id).FirstOrDefaultAsync();
-        return  reservation;
+        var evenementReservation = await dbContext.EvenementReservers.FirstOrDefaultAsync(x=>x.Id ==id);
+        return evenementReservation;
     }
 
     public async Task<IEnumerable<EvenementReserver>> GetBookingsReserverByClientIdAsync(int clientId)

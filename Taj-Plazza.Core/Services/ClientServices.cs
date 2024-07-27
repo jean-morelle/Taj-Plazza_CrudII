@@ -44,4 +44,6 @@ namespace Taj_Plazza.Core.Services
            await clientRepertory.Update(client);
         }
     }
+
+   
 }
