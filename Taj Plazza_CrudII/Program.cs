@@ -18,6 +18,7 @@ builder.Services.AddScoped<IClientRepertory,ClientRepertory>();
 builder.Services.AddScoped<IBookingRepository,BookingRepository>();
 builder.Services.AddScoped<IBookingServices, BookingServices>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+builder.Services.AddScoped<IReservationServices,ReservationServices>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

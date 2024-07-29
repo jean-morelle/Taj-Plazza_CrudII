@@ -10,9 +10,8 @@ namespace Taj_Plazza.Core.Profiles
         {
             // --- Source => Destination
 
-            CreateMap< EvenementReserver, EvenementReserverToAddDto> ();
-
-            //CreateMap<EvenementReserver, ReadEvenementReserverDto>();
+            CreateMap<EvenementReserverToAddDto, EvenementReserver>();
+           
 
         }
     }
