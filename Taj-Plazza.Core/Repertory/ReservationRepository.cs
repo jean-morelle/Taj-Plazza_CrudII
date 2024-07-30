@@ -52,15 +52,8 @@ public class ReservationRepository : IReservationRepository
 
     public async Task<Categorie> GetCategorieByReservationIdAsync(int reservationId)
     {
-        var reservation = await dbContext.Reservations
-            .Include(x => x.Categorie)
-            .FirstOrDefaultAsync(r => r.Id == reservationId);
-        //if (reservation == null)
-        //{
-        //    // Gérer le cas où la réservation n'est pas trouvée
-        //    throw new KeyNotFoundException($"Reservation with ID {reservationId} not found.");
-        //}
-
-        return reservation.Categorie;
+        var categorie = await dbContext.Categories
+            .FirstOrDefaultAsync(x => x.Id == reservationId);
+        return categorie;
     }
 }
