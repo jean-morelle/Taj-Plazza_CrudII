@@ -21,7 +21,8 @@ namespace Taj_Plazza.Core.Services
 
         public Task<EvenementReserver> CreateBookingAsync(EvenementReserverToAddDto bookingAddDto)
         {
-            return bookingRepository.CreateBookingAsync(bookingAddDto);
+            var AddBooKing = bookingRepository.CreateBookingAsync(bookingAddDto);
+            return AddBooKing;
         }
 
         public Task<EvenementReserver> DeleteBookingByIdAsync(int evenReserverId)

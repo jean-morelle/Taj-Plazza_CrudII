@@ -1,10 +1,11 @@
-﻿using AutoMapper;
+﻿ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.InteropServices;
 using Taj_Plazza.Core.DTOs;
 using Taj_Plazza.Core.Interface;
 using Taj_Plazza.Core.Models;
+using Taj_Plazza.Core.Services;
 
 namespace Taj_Plazza_CrudII.Controllers
 {
@@ -13,12 +14,12 @@ namespace Taj_Plazza_CrudII.Controllers
     public class BookingController : ControllerBase
     {
         private readonly IBookingServices bookingServices;
-        private readonly IMapper mapper1;
+        private readonly IMapper mapper;
 
-        public BookingController( IBookingServices bookingServices,IMapper mapper1)
+        public BookingController( IBookingServices bookingServices, IMapper mapper)
         {
             this.bookingServices = bookingServices;
-            this.mapper1 = mapper1;
+            this.mapper = mapper;
         }
 
         [HttpGet()]
@@ -65,37 +66,32 @@ namespace Taj_Plazza_CrudII.Controllers
                 return StatusCode(500, "An unexpected error occurred. Please try again later.");
             }
         }
+
         [HttpPost]
-        public async Task<IActionResult>Create(EvenementReserverToAddDto reserverToAddDto)
+        public async Task<IActionResult> Create( EvenementReserverToAddDto bookingToAddDto)
         {
-            var evenReservationModel = mapper1.Map<EvenementReserver>(reserverToAddDto);
-            // Validation des d onnées entrantes
-            if (!ModelState.IsValid)
+            if (bookingToAddDto == null)
             {
-                
-                return BadRequest(ModelState);
+                return BadRequest("Les données de réservation sont nulles.");
             }
 
             try
             {
                
-                var evenReservation = bookingServices.GetBookingByIdAsync(evenReservationModel.Id);
-                if (evenReservation != null)
-                {
-                    
-                    return Conflict("Un evenReservation avec ce nom  existe déjà.");
-                }
+                // Appeler un service pour enregistrer la réservation
+             var evenBooking =   await bookingServices.CreateBookingAsync(bookingToAddDto);
 
-
-                  await  bookingServices.CreateBookingAsync(reserverToAddDto);
-                        bookingServices.Save();
-               
-                return CreatedAtAction(nameof(GetAllBookings), new { id = evenReservationModel.Id }, evenReservationModel);
+                return Ok(evenBooking);
+            }
+            catch (AutoMapperMappingException ex)
+            {
+                // Gestion des erreurs spécifiques au mappage
+                return BadRequest($"Erreur de mappage: {ex.Message}");
             }
             catch (Exception ex)
             {
-               
-                return StatusCode(500, $"Une erreur s'est produite lors de la création : {ex.Message}");
+                // Gestion des erreurs générales
+                return StatusCode(500, $"Erreur interne du serveur : {ex.Message}");
             }
         }
 
