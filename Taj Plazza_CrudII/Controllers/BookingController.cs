@@ -94,7 +94,38 @@ namespace Taj_Plazza_CrudII.Controllers
                 return StatusCode(500, $"Erreur interne du serveur : {ex.Message}");
             }
         }
+        [HttpDelete]
 
+        public async Task<IActionResult> Delete(int evenBookingId)
+        {
+            try
+            {
+                if(evenBookingId <= 0)
+                {
+                    return BadRequest("Error BadRequest");
+                }
+                var existingEvenBooking = await bookingServices.GetBookingByIdAsync(evenBookingId);
+
+                if(existingEvenBooking is null)
+                {
+                    return NotFound($"{evenBookingId} not found");
+                }
+                else
+                {
+                     await bookingServices.DeleteBookingByIdAsync(evenBookingId);
+
+                    
+                }
+
+                return NoContent(); 
+            }
+
+            catch (Exception ex)
+            {
+                // Gestion des erreurs générales
+                return StatusCode(500, $"Erreur interne du serveur : {ex.Message}");
+            }
+        }
     }
 }
     
