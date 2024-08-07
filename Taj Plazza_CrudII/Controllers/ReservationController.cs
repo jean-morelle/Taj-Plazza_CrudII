@@ -32,6 +32,13 @@ namespace Taj_Plazza_CrudII.Controllers
             return Ok(categories);
         }
 
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult>GetCategoryById(int id)
+        //{
+        //    var categorie = await reservationServices.GetCategorieByIdAsync(id);
+        //    return Ok(categorie);
+        //}
+
         [HttpGet("{id}")]
 
         public async Task<IActionResult>GetReservationById(int id)
@@ -60,5 +67,6 @@ namespace Taj_Plazza_CrudII.Controllers
 
             return Ok(reservation);
         }
+
     }
 }

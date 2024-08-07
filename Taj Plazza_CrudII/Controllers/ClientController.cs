@@ -19,7 +19,7 @@ namespace Taj_Plazza_CrudII.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet("api/client")]
         public async Task<IActionResult> GetClientAll()
         {
             try

@@ -12,6 +12,6 @@ namespace Taj_Plazza.Core.Interface
         Task<IEnumerable<Reservation>> GetReservationsAsync(string? filter);
         Task<Reservation> GetReservationByIdAsync(int id);
         Task<IEnumerable<Categorie>> GetCategoriesAsync(string? filter);
-        Task<Categorie> GetCategorieByReservationIdAsync(int reservationId);
+        Task<Categorie> GetCategorieByIdAsync(int categorieId);
     }
 }

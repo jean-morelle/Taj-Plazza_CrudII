@@ -50,10 +50,10 @@ public class ReservationRepository : IReservationRepository
             
     }
 
-    public async Task<Categorie> GetCategorieByReservationIdAsync(int reservationId)
+    public async Task<Categorie> GetCategorieByIdAsync(int categorieId)
     {
         var categorie = await dbContext.Categories
-            .FirstOrDefaultAsync(x => x.Id == reservationId);
+            .FirstOrDefaultAsync(x => x.Id == categorieId);
         return categorie;
     }
 }

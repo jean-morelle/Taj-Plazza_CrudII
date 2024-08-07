@@ -18,9 +18,9 @@ namespace Taj_Plazza.Core.Services
             this.reservationRepository = reservationRepository;
         }
 
-        public Task<Categorie> GetCategorieByReservationIdAsync(int reservationId)
+        public Task<Categorie> GetCategorieByIdAsync(int reservationId)
         {
-          return  reservationRepository.GetCategorieByReservationIdAsync(reservationId);
+          return  reservationRepository.GetCategorieByIdAsync(reservationId);
         }
 
         public Task<IEnumerable<Categorie>> GetCategoriesAsync(string? filter)
