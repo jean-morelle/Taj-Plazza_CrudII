@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using Taj_Plazza.Core.DataAcess;
 using Taj_Plazza.Core.Interface;
 using Taj_Plazza.Core.Profiles;
@@ -41,6 +42,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//here is the url that's been granted access by the CORS policy (use web url address allowed )
+app.UseCors(policy => policy.WithOrigins("https://localhost:7141/")
+.AllowAnyMethod()
+.WithHeaders(HeaderNames.ContentType)
+.AllowCredentials());
 
 app.UseHttpsRedirection();
 
