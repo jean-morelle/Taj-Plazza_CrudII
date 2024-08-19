@@ -9,5 +9,4 @@ public interface IClientServices
     Task<IEnumerable<Client>> GetAll();
     Task<Client> GetById(int clientId);
     Task Update(Client client);
-    Task<Client> GetByName(string name);
 }

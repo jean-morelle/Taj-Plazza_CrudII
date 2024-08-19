@@ -52,17 +52,6 @@ namespace Taj_Plazza.Core.Repertory
             throw new Exception("client not found!");
         }
 
-        public async Task<Client> GetByName(string name)
-        {
-            var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.NomComplete == name);
-            
-            if (client != null)
-            {
-                return client;
-            }
-
-            throw new Exception("client not found!");
-        }
 
         public async Task Update(Client client)
         {
