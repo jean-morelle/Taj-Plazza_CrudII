@@ -10,61 +10,88 @@ namespace Taj_Plazza_CrudII.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly IClientServices services;
+        private readonly IClientServices clientServices;
         private readonly IMapper mapper;
 
-        public ClientController( IClientServices services,IMapper mapper)
+        public ClientController(IClientServices clientServices, IMapper mapper)
         {
-            this.services = services;
+            this.clientServices = clientServices;
             this.mapper = mapper;
         }
 
-        [HttpGet("Get Client")]
-        public async Task<IActionResult> GetClientAll()
+        [HttpGet]
+        public async Task<IActionResult> GetClients()
         {
             try
             {
-                var clients = await services.GetAll();
-                var clientDtos =  mapper.Map<IEnumerable<ReadClientDto>>(clients);
-                return Ok(clientDtos);
+                var client = await clientServices.GetAll();
+
+                return Ok(client);
             }
             catch
             {
                 // Gérez l'exception ici (par exemple, en renvoyant un code d'erreur approprié).
                 return StatusCode(500, "Erreur lors de la récupération des clients.");
-            }  
+            }
         }
 
-        [HttpGet("{id}", Name = "GetClient")]
-        public async Task<ActionResult<ReadClientDto>> GetClientById(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Client>> GetClient(int id)
         {
-            var client = await services.GetById(id);
+            var client = await clientServices.GetById(id);
 
-            var clientDto = mapper.Map<ReadClientDto>(client);
-
-            return Ok(clientDto);
+            return Ok(client);
         }
 
 
-        [HttpPost("AddClient")]
-        public async Task<ActionResult<ReadClientDto>> AddClient(AddClientDto client)
+        [HttpPost]
+        public async Task<ActionResult<Client>> AddClient(ClientDto clientDto)
         {
-           // Vérifiez si le nom du client existe déjà dans la base de données
+            var client = mapper.Map<Client>(clientDto);
 
-            var existingClient = await services.GetByName(client.NomComplete);
-            if (existingClient != null)
+            await clientServices.Create(client);
+
+
+            return CreatedAtAction(nameof(GetClient), new { id = client.Id }, client);
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateClient(int id, ClientDto clientDto)
+        {
+            var client = await clientServices.GetById(id);
+
+            if (client == null)
             {
-                // Le client existe déjà, vous pouvez renvoyer un message d'erreur approprié
-                return BadRequest("Le client avec ce nom existe déjà.");
+                return NotFound("Client not found.");
             }
 
-            // Si le client n'existe pas, ajoutez-le à la base de données
-            var clientModel = mapper.Map<Client>(client);
-            await services.Create(clientModel);
-            var clientReadDto = mapper.Map<ReadClientDto>(clientModel);
-            return CreatedAtAction(nameof(GetClientById), new { id = clientReadDto.Id }, clientReadDto);
+            // Map the incoming DTO to the existing client entity
+            mapper.Map(clientDto, client);
+
+            await clientServices.Update(client);
+
+            return Ok("Mise à jour avec succès.");
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteClient(int id)
+        {
+            var client = await clientServices.GetById(id);
+
+            if (client == null)
+            {
+                return NotFound("Client not found.");
+            }
+
+            await clientServices.Delete(id);
+
+            return NoContent();
+        }
+
+
     }
 }
+
 
 

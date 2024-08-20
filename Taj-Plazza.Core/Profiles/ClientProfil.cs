@@ -9,9 +9,9 @@ namespace Taj_Plazza.Core.Profiles
         public ClientProfil()
         {
             //--Source => Destination
-            CreateMap<AddClientDto, Client>();
+            CreateMap<ClientDto, Client>();
 
-            CreateMap<Client,ReadClientDto>();
+            CreateMap<Client,ClientDto>();
 
         }
     }
