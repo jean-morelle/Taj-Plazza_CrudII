@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{4FE466CB-D99
 		Documentation.txt = Documentation.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taj Plazza", "Taj Plazza\Taj Plazza.csproj", "{27C83413-E75F-429E-B9D7-94855ADDC315}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{D0533068-5536-47A9-A47F-32D73BA8CD76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0533068-5536-47A9-A47F-32D73BA8CD76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0533068-5536-47A9-A47F-32D73BA8CD76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27C83413-E75F-429E-B9D7-94855ADDC315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C83413-E75F-429E-B9D7-94855ADDC315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C83413-E75F-429E-B9D7-94855ADDC315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C83413-E75F-429E-B9D7-94855ADDC315}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
