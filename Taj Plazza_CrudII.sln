@@ -12,6 +12,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{4FE466CB-D99
 		Documentation.txt = Documentation.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taje_ Plazza.Domain", "Taje_ Plazza.Domain\Taje_ Plazza.Domain.csproj", "{ADE8B284-F8E5-422C-BD3D-8D3791D80A18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taje-Plazza.Application", "Taje-Plazza.Application\Taje-Plazza.Application.csproj", "{252AC1F8-6211-4352-87BA-052DA1434CB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taje-Plazza.Infrastructure", "Taje-Plazza.Infrastructure\Taje-Plazza.Infrastructure.csproj", "{43FFF2A1-A50C-4774-A316-568D60CBFAF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E817E5D-04F6-4F2C-B97D-7A48C9747661}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +37,18 @@ Global
 		{D0533068-5536-47A9-A47F-32D73BA8CD76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0533068-5536-47A9-A47F-32D73BA8CD76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0533068-5536-47A9-A47F-32D73BA8CD76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE8B284-F8E5-422C-BD3D-8D3791D80A18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE8B284-F8E5-422C-BD3D-8D3791D80A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE8B284-F8E5-422C-BD3D-8D3791D80A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE8B284-F8E5-422C-BD3D-8D3791D80A18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252AC1F8-6211-4352-87BA-052DA1434CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252AC1F8-6211-4352-87BA-052DA1434CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252AC1F8-6211-4352-87BA-052DA1434CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252AC1F8-6211-4352-87BA-052DA1434CB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43FFF2A1-A50C-4774-A316-568D60CBFAF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43FFF2A1-A50C-4774-A316-568D60CBFAF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43FFF2A1-A50C-4774-A316-568D60CBFAF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43FFF2A1-A50C-4774-A316-568D60CBFAF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

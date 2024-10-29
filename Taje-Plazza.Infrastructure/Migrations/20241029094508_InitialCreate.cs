@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TajPlazza.Core.Migrations
+namespace TajePlazza.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -19,7 +19,8 @@ namespace TajPlazza.Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomComplete = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Domicile = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
