@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taj Plazza_CrudII", "Taj Plazza_CrudII\Taj Plazza_CrudII.csproj", "{D0DDE65C-37C2-4B1E-B50F-AD02C8A10A53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taj Plazza API", "Taj Plazza_CrudII\Taj Plazza API.csproj", "{D0DDE65C-37C2-4B1E-B50F-AD02C8A10A53}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taj-Plazza.Core", "Taj-Plazza.Core\Taj-Plazza.Core.csproj", "{D0533068-5536-47A9-A47F-32D73BA8CD76}"
 EndProject
@@ -12,16 +12,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{4FE466CB-D99
 		Documentation.txt = Documentation.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taje_ Plazza.Domain", "Taje_ Plazza.Domain\Taje_ Plazza.Domain.csproj", "{ADE8B284-F8E5-422C-BD3D-8D3791D80A18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taje_ Plazza.Domain", "Taje_ Plazza.Domain\Taje_ Plazza.Domain.csproj", "{ADE8B284-F8E5-422C-BD3D-8D3791D80A18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taje-Plazza.Application", "Taje-Plazza.Application\Taje-Plazza.Application.csproj", "{252AC1F8-6211-4352-87BA-052DA1434CB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taje-Plazza.Application", "Taje-Plazza.Application\Taje-Plazza.Application.csproj", "{252AC1F8-6211-4352-87BA-052DA1434CB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taje-Plazza.Infrastructure", "Taje-Plazza.Infrastructure\Taje-Plazza.Infrastructure.csproj", "{43FFF2A1-A50C-4774-A316-568D60CBFAF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taje-Plazza.Infrastructure", "Taje-Plazza.Infrastructure\Taje-Plazza.Infrastructure.csproj", "{43FFF2A1-A50C-4774-A316-568D60CBFAF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E817E5D-04F6-4F2C-B97D-7A48C9747661}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taj Plazza Application", "Taj Plazza Application\Taj Plazza Application.csproj", "{9F76AC09-D0AD-4646-A78A-593AD3293924}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{43FFF2A1-A50C-4774-A316-568D60CBFAF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43FFF2A1-A50C-4774-A316-568D60CBFAF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43FFF2A1-A50C-4774-A316-568D60CBFAF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F76AC09-D0AD-4646-A78A-593AD3293924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F76AC09-D0AD-4646-A78A-593AD3293924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F76AC09-D0AD-4646-A78A-593AD3293924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F76AC09-D0AD-4646-A78A-593AD3293924}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

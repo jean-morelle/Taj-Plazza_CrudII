@@ -1,0 +1,40 @@
+﻿@page "/ClientList"
+@inherits ClientListComponent
+
+<h3 class="text-primary text-center">Liste des clients</h3>
+
+<div class="container mt-5 p-5">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom complet</th>
+                <th>Domicile</th>
+                <th>Telephone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ( var client in clients)
+            {
+                <tr>
+                    <td>
+                       @client.Id
+                    </td>
+                    <td>
+                        @client.NomComplete
+                    </td>
+                    <td>
+                        @client.Domicile
+                    </td>
+                    <td>
+                        @client.Telephone
+                    </td>
+                    <td>
+                        @client.Email
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

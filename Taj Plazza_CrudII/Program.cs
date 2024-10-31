@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using Taj_Plazza.Core.DataAcess;
 using Taj_Plazza.Core.Interface;
 using Taj_Plazza.Core.Repertory;
@@ -32,6 +33,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(policy => policy.WithOrigins("https://localhost:7131")
+.AllowAnyMethod()
+.WithHeaders(HeaderNames.ContentType)
+.AllowCredentials());
 
 app.UseHttpsRedirection();
 
