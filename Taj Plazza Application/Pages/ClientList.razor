@@ -4,6 +4,8 @@
 <h3 class="text-primary text-center">Liste des clients</h3>
 
 <div class="container mt-5 p-5">
+    <div class="container text-lg-end"><button class="btn btn-primary" @onclick="() => null //DeleteClient(client.Id)">Ajout</button></div>
+    <br />
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -12,6 +14,7 @@
                 <th>Domicile</th>
                 <th>Telephone</th>
                 <th>Email</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +36,13 @@
                     <td>
                         @client.Email
                     </td>
+
+                    <td>
+                        
+                        <button class="btn btn-success" @onclick="() => null //ShowEditClientForm(client)">Modifier</button>
+                        <button class="btn btn-danger" @onclick="() => null //DeleteClient(client.Id)">Supprimer</button>
+                    </td>
+                    
                 </tr>
             }
         </tbody>

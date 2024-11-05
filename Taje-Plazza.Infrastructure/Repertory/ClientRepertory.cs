@@ -14,19 +14,19 @@ namespace Taj_Plazza.Core.Repertory
             this.dbContext = dbContext;
         }
 
-        public async Task Create(Client client)
+        public async Task AddClient(Client newClient)
         {
-            dbContext.Clients.Add(client);
+            dbContext.Clients.Add(newClient);
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(int clientId)
+        public async Task DeleteClient(int clientId)
         {
-            var removeOfclient = await dbContext.Clients.FindAsync(clientId);
+            var client = await dbContext.Clients.FindAsync(clientId);
 
-            if (removeOfclient != null)
+            if (client != null)
             {
-                dbContext.Clients.Remove(removeOfclient);
+                dbContext.Clients.Remove(client);
                 await  dbContext.SaveChangesAsync();
             }
             else
@@ -35,12 +35,12 @@ namespace Taj_Plazza.Core.Repertory
             }
         }
 
-        public async Task<IEnumerable<Client>> GetAll()
+        public async Task<IEnumerable<Client>> GetClients()
         {
             return await dbContext.Clients.ToListAsync();
         }
 
-        public async Task<Client> GetById(int clientId)
+        public async Task<Client> GetClient(int clientId)
         {
             var client = await dbContext.Clients.FindAsync(clientId);
 
@@ -53,9 +53,9 @@ namespace Taj_Plazza.Core.Repertory
         }
 
 
-        public async Task Update(Client client)
+        public async Task UpdateClient(Client updateClient)
         {
-            dbContext.Clients.Update(client);
+            dbContext.Clients.Update(updateClient);
             await dbContext.SaveChangesAsync();
         }
 

@@ -5,14 +5,14 @@ namespace Taj_Plazza.Core.Interface
 {
     public interface IClientRepertory
     {
-        Task<IEnumerable<Client>> GetAll();
+        Task<IEnumerable<Client>> GetClients();
 
-        Task<Client> GetById(int clientId);
+        Task<Client> GetClient(int clientId);
 
-        Task Delete(int clientId);
+        Task DeleteClient(int clientId);
 
-        Task Create(Client client);
+        Task AddClient(Client newClient);
 
-        Task Update(Client client);
+        Task UpdateClient(Client updateClient);
     }
 }

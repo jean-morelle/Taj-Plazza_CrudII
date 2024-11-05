@@ -4,9 +4,9 @@ namespace Taj_Plazza.Core.Interface;
 
 public interface IClientServices
 {
-    Task Create(Client client);
-    Task Delete(int clientId);
-    Task<IEnumerable<Client>> GetAll();
-    Task<Client> GetById(int clientId);
-    Task Update(Client client);
+    Task AddClient(Client newClient);
+    Task DeleteClient(int clientId);
+    Task<IEnumerable<Client>> GetClients();
+    Task<Client> GetClient(int clientId);
+    Task UpdateClient(Client updateClient);
 }

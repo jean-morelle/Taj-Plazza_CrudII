@@ -7,7 +7,7 @@ namespace Taj_Plazza_Application.Pages
 {
     public class ClientListComponent :ComponentBase
     {
-       public IEnumerable<Client> clients;
+        public IEnumerable<Client>clients ;
         [Inject]
         IclientServicesCore clientServicesCore { get; set; }
 

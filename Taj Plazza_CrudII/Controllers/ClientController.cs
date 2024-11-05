@@ -24,7 +24,7 @@ namespace Taj_Plazza_CrudII.Controllers
         {
             try
             {
-                var client = await clientServices.GetAll();
+                var client = await clientServices.GetClients();
 
                 return Ok(client);
             }
@@ -38,7 +38,7 @@ namespace Taj_Plazza_CrudII.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> GetClient(int id)
         {
-            var client = await clientServices.GetById(id);
+            var client = await clientServices.GetClient(id);
 
             return Ok(client);
         }
@@ -49,7 +49,7 @@ namespace Taj_Plazza_CrudII.Controllers
         {
             var client = mapper.Map<Client>(clientDto);
 
-            await clientServices.Create(client);
+            await clientServices.AddClient(client);
 
 
             return CreatedAtAction(nameof(GetClient), new { id = client.Id }, client);
@@ -59,7 +59,7 @@ namespace Taj_Plazza_CrudII.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateClient(int id, ClientDto clientDto)
         {
-            var client = await clientServices.GetById(id);
+            var client = await clientServices.GetClient(id);
 
             if (client == null)
             {
@@ -69,7 +69,7 @@ namespace Taj_Plazza_CrudII.Controllers
             // Map the incoming DTO to the existing client entity
             mapper.Map(clientDto, client);
 
-            await clientServices.Update(client);
+            await clientServices.UpdateClient(client);
 
             return Ok("Mise à jour avec succès.");
         }
@@ -77,14 +77,14 @@ namespace Taj_Plazza_CrudII.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClient(int id)
         {
-            var client = await clientServices.GetById(id);
+            var client = await clientServices.GetClient(id);
 
             if (client == null)
             {
                 return NotFound("Client not found.");
             }
 
-            await clientServices.Delete(id);
+            await clientServices.DeleteClient(id);
 
             return NoContent();
         }

@@ -17,30 +17,30 @@ namespace Taj_Plazza.Core.Services
             this.clientRepertory = clientRepertory;
         }
 
-        public async Task Create(Client client)
+        public async Task AddClient(Client newClient)
         {
-            await  clientRepertory.Create(client);
+            await  clientRepertory.AddClient(newClient);
         }
 
-        public async Task Delete(int clientId)
+        public async Task DeleteClient(int clientId)
         {
-           await  clientRepertory.Delete(clientId);
+           await  clientRepertory.DeleteClient(clientId);
         }
 
-        public Task<IEnumerable<Client>> GetAll()
+        public Task<IEnumerable<Client>> GetClients()
         {
-           return this.clientRepertory.GetAll();
+           return this.clientRepertory.GetClients();
         }
 
-        public Task<Client> GetById(int clientId)
+        public Task<Client> GetClient(int clientId)
         {
-            var client = clientRepertory.GetById(clientId);
+            var client = clientRepertory.GetClient(clientId);
             return client;
         }
 
-        public async Task Update(Client client)
+        public async Task UpdateClient(Client client)
         {
-           await clientRepertory.Update(client);
+           await clientRepertory.UpdateClient(client);
             
         }
     }
