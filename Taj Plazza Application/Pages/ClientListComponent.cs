@@ -15,5 +15,6 @@ namespace Taj_Plazza_Application.Pages
         {
             clients = await clientServicesCore.GetClients();
         }
+       
     }
 }

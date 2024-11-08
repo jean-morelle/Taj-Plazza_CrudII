@@ -13,6 +13,6 @@ namespace Taj_Plazza.Core.Interfaces
         Task DeleteClient(int clientId);
         Task<IEnumerable<Client>> GetClients();
         Task<Client> GetClient(int clientId);
-        Task UpdateClient(int clientId, Client UpdateClient);
+        Task UpdateClient(int clientId, Client client);
     }
 }

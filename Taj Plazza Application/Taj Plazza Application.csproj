@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\ClientDetails.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.29" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.29" PrivateAssets="all" />
   </ItemGroup>
@@ -14,6 +18,18 @@
   <ItemGroup>
     <ProjectReference Include="..\Taj-Plazza.Core\Taj-Plazza.Core.csproj" />
     <ProjectReference Include="..\Taje_ Plazza.Domain\Taje_ Plazza.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\ClientDetails.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\ClientDetails.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\ClientDetails.razor" />
   </ItemGroup>
 
 </Project>

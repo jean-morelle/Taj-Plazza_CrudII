@@ -199,9 +199,9 @@ namespace Taj_Plazza.Core.ServicesProviders
             return client;
 
         }
-        public async Task UpdateClient(int clientId, Client UpdateClient)
+        public async Task UpdateClient(int clientId, Client client)
         {
-            Client client = null;
+            //Client clients = null;
             try
             {
                 var content = new StringContent(JsonConvert.SerializeObject(UpdateClient), Encoding.UTF8, "application/json");
