@@ -35,7 +35,7 @@ namespace Taj_Plazza.Core.Repertory
             }
         }
 
-        public async Task<IEnumerable<Client>> GetClients()
+        public async Task<List<Client>> GetClients()
         {
             return await dbContext.Clients.ToListAsync();
         }

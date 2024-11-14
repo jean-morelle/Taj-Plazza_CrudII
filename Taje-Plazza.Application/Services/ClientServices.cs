@@ -27,7 +27,7 @@ namespace Taj_Plazza.Core.Services
            await  clientRepertory.DeleteClient(clientId);
         }
 
-        public Task<IEnumerable<Client>> GetClients()
+        public Task<List<Client>> GetClients()
         {
            return this.clientRepertory.GetClients();
         }

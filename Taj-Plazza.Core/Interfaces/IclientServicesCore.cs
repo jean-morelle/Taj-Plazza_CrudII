@@ -9,10 +9,10 @@ namespace Taj_Plazza.Core.Interfaces
 {
     public interface IclientServicesCore
     {
-        Task AddClient(Client newClient);
-        Task DeleteClient(int clientId);
-        Task<IEnumerable<Client>> GetClients();
-        Task<Client> GetClient(int clientId);
-        Task UpdateClient(int clientId, Client client);
+        Task AddClientAsync(Client newClient);
+        Task DeleteClientAsync(int clientId);
+        Task<List<Client>> GetClientsAsync();
+        Task<Client> GetClientAsync(int clientId);
+        Task UpdateClientAsync(int id, Client client);
     }
 }

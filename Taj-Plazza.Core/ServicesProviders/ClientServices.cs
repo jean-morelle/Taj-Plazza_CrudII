@@ -22,7 +22,7 @@ namespace Taj_Plazza.Core.ServicesProviders
             this.httpClient = httpClient;
         }
 
-        public async Task AddClient(Client newClient)
+        public async Task AddClientAsync(Client newClient)
         {
             
             try
@@ -91,7 +91,7 @@ namespace Taj_Plazza.Core.ServicesProviders
             
         }
 
-        public async Task DeleteClient(int clientId)
+        public async Task DeleteClientAsync(int clientId)
         {
            
                 var responses = await httpClient.GetAsync($"{RequestUri}/clients/ {clientId}");
@@ -100,7 +100,7 @@ namespace Taj_Plazza.Core.ServicesProviders
             
         }
 
-        public async Task<IEnumerable<Client>> GetClients()
+        public async Task<List<Client>> GetClientsAsync()
         {
             List<Client> clients = new List<Client>();
             try
@@ -150,7 +150,7 @@ namespace Taj_Plazza.Core.ServicesProviders
         
         }
 
-        public async Task<Client> GetClient(int clientId)
+        public async Task<Client> GetClientAsync(int clientId)
         {
             Client client = null;
             try
@@ -199,13 +199,13 @@ namespace Taj_Plazza.Core.ServicesProviders
             return client;
 
         }
-        public async Task UpdateClient(int clientId, Client client)
+        public async Task UpdateClientAsync(int id, Client client)
         {
             //Client clients = null;
             try
             {
-                var content = new StringContent(JsonConvert.SerializeObject(UpdateClient), Encoding.UTF8, "application/json");
-                HttpResponseMessage responses = await httpClient.PutAsync($"{RequestUri}/{clientId}", content);
+                var content = new StringContent(JsonConvert.SerializeObject(UpdateClientAsync), Encoding.UTF8, "application/json");
+                HttpResponseMessage responses = await httpClient.PutAsync($"{RequestUri}/{id}", content);
                 string responseString = await responses.Content.ReadAsStringAsync();
 
                 if (responses.IsSuccessStatusCode)

@@ -5,7 +5,7 @@ namespace Taj_Plazza.Core.Interface
 {
     public interface IClientRepertory
     {
-        Task<IEnumerable<Client>> GetClients();
+        Task<List<Client>> GetClients();
 
         Task<Client> GetClient(int clientId);
 

@@ -6,7 +6,7 @@ public interface IClientServices
 {
     Task AddClient(Client newClient);
     Task DeleteClient(int clientId);
-    Task<IEnumerable<Client>> GetClients();
+    Task<List<Client>> GetClients();
     Task<Client> GetClient(int clientId);
     Task UpdateClient(Client updateClient);
 }
