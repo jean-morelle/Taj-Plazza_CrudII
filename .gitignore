@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Taj Plazza Application/Pages/AddNewClient.razor
+/Taj Plazza Application/Pages/AddNewClientComponent.cs
