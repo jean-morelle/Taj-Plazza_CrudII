@@ -1,68 +1,79 @@
-﻿ @page "/ClientList"
+﻿@page "/ClientList"
 @inherits ClientListComponent
 
 <div class="container">
-  <div class="row">
-        <p><a class="btn btn-success float-end" href="/AddNewClient"> Add new client</a></p>
-    <div class="col-md-12">
-        <div class="card">
-        <div class="card-header"></div>
-                @if (!getAllclients.Any())
+    <div class="row">
+        
+       <p><a class="btn btn-primary float-end" href="/AddNewClient">Add new client</a></p>
+        
+       <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"></div>
+                @if (!AllClients.Any())
                 {
-                    <p><em> Loading Clients ...</em></p>
-                }
-                @if(getAllclients.Any()){
-        <div class="card-body">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom complet</th>
-                <th>Domicile</th>
-                <th>Telephone</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ( var client in getAllclients)
-            {
-                <tr>
-                    <td>
-                       @client.Id
-                    </td>
-                    <td>
-                        @client.NomComplete
-                    </td>
-                    <td>
-                        @client.Domicile
-                    </td>
-                    <td>
-                        @client.Telephone
-                    </td>
-                    <td>
-                        @client.Email
-                    </td>
-
-                    <td>
-
-                        <a href="/client/edit/@client.Id" class="btn btn-success ">Edit</a>
-                        <a href="/client/delete/@client.Id" class="btn btn-danger ">Delete</a>
-                    </td>
-                    
-                </tr>
-            }
-        </tbody>
-       
-    </table>
-         </div>
+                    <p><em>Loading Clients...</em></p>
                 }
                 else
                 {
-                  <div class="alert alert-info">There is not clients List Avalabre</div>  
+                    <div class="card-body">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom complet</th>
+                                    <th>Domicile</th>
+                                    <th>Telephone</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var client in DisplayedClients)
+                                {
+                                    <tr>
+                                        <td>@client.Id</td>
+                                        <td>@client.NomComplete</td>
+                                        <td>@client.Domicile</td>
+                                        <td>@client.Telephone</td>
+                                        <td>@client.Email</td>
+                                        <td>
+                                            <a href="EditClient/@client.Id" class="btn btn-warning">Edit</a>
+                                            <a href="DeleteClient/@client.Id" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <nav class="float-end">
+                            <ul class="pagination">
+                                <li class="page-item @((CurrentPage == 1 ? "disabled" : ""))">
+                                    <a class="page-link" @onclick="PreviousPage">Previous</a>
+                                </li>
+                                @for (var i = 1; i <= TotalPages; i++)
+                                {
+                                    <li class="page-item @((CurrentPage == i ? "active" : ""))">
+                                        <a class="page-link" @onclick="() => SetPage(i)">@i</a>
+                                    </li>
+                                }
+                                <li class="page-item @((CurrentPage == TotalPages ? "disabled" : ""))">
+                                    <a class="page-link" @onclick="NextPage">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 }
             </div>
-<div/>
-  </div>
+        </div>
+    </div>
 </div>
-</div>
+
+@code {
+    
+
+    private void SetPage(int pageNumber)
+    {
+        CurrentPage = pageNumber;
+        PaginateClients();
+    }
+  
+}

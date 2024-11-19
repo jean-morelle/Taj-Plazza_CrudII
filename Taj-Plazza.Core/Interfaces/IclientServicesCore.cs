@@ -13,6 +13,6 @@ namespace Taj_Plazza.Core.Interfaces
         Task DeleteClientAsync(int clientId);
         Task<List<Client>> GetClientsAsync();
         Task<Client> GetClientAsync(int clientId);
-        Task UpdateClientAsync(int id, Client client);
+        Task UpdateClientAsync( Client client);
     }
 }

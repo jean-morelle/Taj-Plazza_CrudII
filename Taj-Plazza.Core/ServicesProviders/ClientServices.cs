@@ -199,13 +199,13 @@ namespace Taj_Plazza.Core.ServicesProviders
             return client;
 
         }
-        public async Task UpdateClientAsync(int id, Client client)
+        public async Task UpdateClientAsync( Client client)
         {
-            //Client clients = null;
+            Client clients = null;
             try
             {
                 var content = new StringContent(JsonConvert.SerializeObject(UpdateClientAsync), Encoding.UTF8, "application/json");
-                HttpResponseMessage responses = await httpClient.PutAsync($"{RequestUri}/{id}", content);
+                HttpResponseMessage responses = await httpClient.PutAsync($"{RequestUri}/{client.Id}", content);
                 string responseString = await responses.Content.ReadAsStringAsync();
 
                 if (responses.IsSuccessStatusCode)

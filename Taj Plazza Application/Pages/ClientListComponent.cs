@@ -1,44 +1,65 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Taj_Plazza.Core.Interface;
 using Taj_Plazza.Core.Interfaces;
 using Taj_Plazza.Core.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Taj_Plazza_Application.Pages
 {
-    public class ClientListComponent :ComponentBase
+    public class ClientListComponent : ComponentBase
     {
-        public List<Client> getAllclients { get; set; } = new();  
-
         [Inject]
-        IclientServicesCore clientServicesCore { get; set; }
+        public IclientServicesCore ClientServicesCore { get; set; }
 
-        [Inject]
-        NavigationManager navigationManager { get; set; }
+        public List<Client> AllClients { get; set; } = new List<Client>();
+        public List<Client> DisplayedClients { get; set; } = new List<Client>();
+
+        public int CurrentPage { get; set; } = 1;
+        public int PageSize { get; set; } = 7;
+        public int TotalPages => (int)Math.Ceiling((double)AllClients.Count / PageSize);
+
         protected override async Task OnInitializedAsync()
         {
-            await LoadAllClient();
-        }
-       public async Task LoadAllClient()
-        {
-            var clients = await clientServicesCore.GetClientsAsync();
-            getAllclients.Clear();
-            if( clients is null) return;
-            foreach(var client in clients)
-            {
-                getAllclients.Add(client);
-            }
-            
-        }
-        
-        public void EditClient(int id)
-        {
-            navigationManager.NavigateTo($"/client/edit/{id}");
+            AllClients = await ClientServicesCore.GetClientsAsync();
+            PaginateClients();
         }
 
-        public async Task DeleteClient(int id)
+        public void PaginateClients()
         {
-            var result =  clientServicesCore.DeleteClientAsync(id);
-            await LoadAllClient();
+            DisplayedClients = AllClients
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
+
+            if (DisplayedClients.Count >= PageSize)
+            {
+                NextPage();
+            }
+        }
+
+        protected void NextPage()
+        {
+            if (CurrentPage < TotalPages)
+            {
+                CurrentPage++;
+                DisplayedClients = AllClients
+                    .Skip((CurrentPage - 1) * PageSize)
+                    .Take(PageSize)
+                    .ToList();
+            }
+        }
+
+        protected void PreviousPage()
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+                DisplayedClients = AllClients
+                    .Skip((CurrentPage - 1) * PageSize)
+                    .Take(PageSize)
+                    .ToList();
+            }
         }
     }
 }
