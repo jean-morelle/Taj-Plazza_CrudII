@@ -93,12 +93,22 @@ namespace Taj_Plazza.Core.ServicesProviders
 
         public async Task DeleteClientAsync(int clientId)
         {
-           
-                var responses = await httpClient.GetAsync($"{RequestUri}/clients/ {clientId}");
-                responses.EnsureSuccessStatusCode();
+            try
+            {
+                var response = await httpClient.DeleteAsync($"{RequestUri}/{clientId}");
+                response.EnsureSuccessStatusCode();
                 Console.WriteLine($"Client avec ID {clientId} a été supprimé.");
-            
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Erreur lors de la suppression du client avec ID {clientId}: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Une erreur inattendue s'est produite lors de la suppression du client avec ID {clientId}: {ex.Message}");
+            }
         }
+
 
         public async Task<List<Client>> GetClientsAsync()
         {
@@ -201,10 +211,10 @@ namespace Taj_Plazza.Core.ServicesProviders
         }
         public async Task UpdateClientAsync( Client client)
         {
-            Client clients = null;
+           // Client clients = null;
             try
             {
-                var content = new StringContent(JsonConvert.SerializeObject(UpdateClientAsync), Encoding.UTF8, "application/json");
+                var content = new StringContent(JsonConvert.SerializeObject(client), Encoding.UTF8, "application/json");
                 HttpResponseMessage responses = await httpClient.PutAsync($"{RequestUri}/{client.Id}", content);
                 string responseString = await responses.Content.ReadAsStringAsync();
 
