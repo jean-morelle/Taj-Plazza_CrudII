@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Taje-Plazza.Infrastructure\Taje-Plazza.Infrastructure.csproj" />
     <ProjectReference Include="..\Taje_ Plazza.Domain\Taje_ Plazza.Domain.csproj" />
   </ItemGroup>
 

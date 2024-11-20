@@ -4,6 +4,9 @@ using Taj_Plazza.Core.DataAcess;
 using Taj_Plazza.Core.Interface;
 using Taj_Plazza.Core.Repertory;
 using Taj_Plazza.Core.Services;
+using Taje__Plazza.Domain.Interface;
+using Taje_Plazza.Application.Services;
+using Taje_Plazza.Infrastructure.Repertory;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -18,6 +21,10 @@ builder.Services.AddScoped<IClientRepertory, ClientRepertory>();
 
 
 builder.Services.AddScoped<IClientServices,ClientServices>();
+
+builder.Services.AddScoped<IReservationRepertory,ReservationRepertory>();
+
+builder.Services.AddScoped<IReservationServices,ReservationServices>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
