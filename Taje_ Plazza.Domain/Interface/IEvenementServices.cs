@@ -9,14 +9,14 @@ namespace Taje__Plazza.Domain.Interface
 {
     public interface IEvenementServices
     {
-        Task<List<Evenement>> GetAllEvenement();
-        Task<Evenement> GetEvenementById(int evenementId);
+        Task<List<Evenement>> GetAllEvenementAsync();
+        Task<Evenement> GetEvenementByIdAsync(int evenementId);
 
-        Task DeleteEvenement(int evenementId);
-        Task AddEvenement(Evenement addEvenement);
+        Task DeleteEvenementAsync(int evenementId);
+        Task AddEvenementAsync(Evenement addEvenement);
 
-        Task UpdateEvenement(Evenement updateEvenement);
+        Task UpdateEvenementAsync(Evenement updateEvenement);
 
-        Task<List<Evenement>> GetClientById(int clientId);
+        Task<List<Evenement>> GetClientEvenementAsync(int clientId);
     }
 }

@@ -22,9 +22,11 @@ builder.Services.AddScoped<IClientRepertory, ClientRepertory>();
 
 builder.Services.AddScoped<IClientServices,ClientServices>();
 
-builder.Services.AddScoped<IReservationRepertory,ReservationRepertory>();
+builder.Services.AddScoped<IEvenementRepertory,EvenementRepertory>();
 
-builder.Services.AddScoped<IReservationServices,ReservationServices>();
+builder.Services.AddScoped<IEvenementServices,EvenementServices>();
+
+
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
