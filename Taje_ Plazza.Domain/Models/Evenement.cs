@@ -11,5 +11,6 @@
         public DateTimeOffset DateDebut { get; set; }
         public DateTimeOffset? DateFin { get; set; }
         public string Place { get; set; }
+        
     }
 }

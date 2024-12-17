@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Taj_Plazza.Core.Models;
 using Taje__Plazza.Domain.Interface;
 using Taje_Plazza.Application.Services;
 
@@ -49,6 +50,13 @@ namespace Taj_Plazza_CrudII.Controllers
             return Ok(evenement);
         }
 
+      //  [HttpPost]
+
+      //  public async Task<IActionResult> CreateEvenement(Evenement evenement)
+      //  {
+            
+            
+        //}
 
     }
 }
