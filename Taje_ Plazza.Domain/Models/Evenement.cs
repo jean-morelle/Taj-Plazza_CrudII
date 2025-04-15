@@ -2,14 +2,11 @@
 {
     public class Evenement
     {
-        public int Id { get; set; }
-        public int ClientId { get; set; }
-        public Client Client { get; set; }
-        public ReservationStatus Status { get; set; }
-        public string NomEvenement { get; set; }
-        public string Description { get; set; }
+        public Guid Id { get; set; }
+        public string NomDeLEvenement { get; set; } = string.Empty;
+        public string LieuEvenement { get; set; } = string.Empty;
         public DateTimeOffset DateDebut { get; set; }
-        public DateTimeOffset? DateFin { get; set; }
-        public string Place { get; set; }
+        public DateTimeOffset DateFin { get; set; }
+        public List<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }
