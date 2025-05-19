@@ -9,9 +9,11 @@ namespace Taje__Plazza.Domain.Models
     public class Equipement
     {
         public Guid Id { get; set; }
-        public string Nom { get; set; } = string.Empty; // Nom de l'équipement (ex : Table, Fourchette)
-        public bool Inclus { get; set; } // Indique si l'équipement est fourni gratuitement avec la réservation
-        public decimal? PrixLocation { get; set; } // Prix pour louer cet équipement supplémentaire (nullable)
+        public string Nom { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public int QuantiteDisponible { get; set; } 
+        public ICollection<Espace> Espaces { get; set;} = new List<Espace>();
+        public ICollection<LocationDEquipement>LocationDEquipements { get; set;}= new List<LocationDEquipement>();
+        public ICollection<MaintenanceDEquipement> MaintenanceDEquipements { get; set; } = new List<MaintenanceDEquipement>();
     }
-
 }
