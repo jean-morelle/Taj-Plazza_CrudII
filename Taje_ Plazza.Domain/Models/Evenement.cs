@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Taje__Plazza.Domain.Models
 {
-    public class Evenement
+    public class Evenement:BaseEntiy
     {
-        public Guid Id { get; set; }
         public Guid ClientId { get; set; }
         public Client Client { get; set; } = new Client();
         public Guid EspaceId { get; set; }

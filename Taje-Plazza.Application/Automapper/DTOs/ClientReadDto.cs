@@ -4,19 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Taj_Plazza.Core.Models;
+using Taje__Plazza.Domain.Models;
 
-namespace Taje__Plazza.Domain.Models
+namespace Taje_Plazza.Application.Automapper.DTOs
 {
-    public class Client:BaseEntiy
+    public class ClientReadDto
     {
-        public Guid UtilisateurId { get; set; }
-        public Utilisateur Utilisateur { get; set; } = new Utilisateur();
+        public Guid Id { get; set; }
         public string Nom { get; set; } = string.Empty;
         public string Prenom { get; set; } = string.Empty;
         public string NumeroDeTelephone { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Adresse { get; set; } = string.Empty;
-        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
-        public ICollection<Evenement> Evenements { get; set; } = new List<Evenement>();
+
     }
 }

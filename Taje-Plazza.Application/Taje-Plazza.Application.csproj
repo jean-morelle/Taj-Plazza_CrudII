@@ -15,10 +15,4 @@
     <ProjectReference Include="..\Taje_ Plazza.Domain\Taje_ Plazza.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Automapper\DTOs\" />
-    <Folder Include="Automapper\Profiles\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

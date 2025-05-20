@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Taje__Plazza.Domain.Models
 {
-    public class Facture
+    public class Facture:BaseEntiy
     {
-        public Guid Id { get; set; }
         public Guid ReservationId { get; set; }
         public Reservation Reservation { get; set; } = new Reservation();
         public string MontantTotal { get; set; } = string.Empty;

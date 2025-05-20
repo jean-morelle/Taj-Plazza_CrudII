@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Taje__Plazza.Domain.Models
 {
-    public class Equipement
+    public class Equipement :BaseEntiy
     {
-        public Guid Id { get; set; }
         public string Nom { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
         public int QuantiteDisponible { get; set; } 

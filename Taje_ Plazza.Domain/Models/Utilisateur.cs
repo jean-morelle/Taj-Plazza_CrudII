@@ -2,9 +2,8 @@
 
 namespace Taj_Plazza.Core.Models
 {
-    public class Utilisateur
+    public class Utilisateur:BaseEntiy
     {
-        public Guid Id { get; set; } 
         public string Nom { get; set; } = string.Empty; 
         public string Prenom { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty; 

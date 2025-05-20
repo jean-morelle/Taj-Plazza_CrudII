@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Taj_Plazza.Core.DataAcess;
+using Taje__Plazza.Domain.Interface;
+using Taje_Plazza.Application.Services;
+using Taje_Plazza.Infrastructure.Repertory;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -9,6 +12,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IClientRepertory, ClientRepertory>();
+builder.Services.AddScoped<IClientServices,ClientServices>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

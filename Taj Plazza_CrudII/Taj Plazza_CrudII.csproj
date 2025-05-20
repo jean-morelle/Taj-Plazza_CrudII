@@ -25,9 +25,4 @@
     <ProjectReference Include="..\Taje_ Plazza.Domain\Taje_ Plazza.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Extention\" />
-  </ItemGroup>
-
 </Project>

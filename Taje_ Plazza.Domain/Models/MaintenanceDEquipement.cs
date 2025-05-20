@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Taje__Plazza.Domain.Models
 {
-    public class MaintenanceDEquipement
+    public class MaintenanceDEquipement:BaseEntiy
     {
-        public Guid Id { get; set; }
         public Guid EquipementId { get; set; }
         public Equipement Equipement { get; set; } = new Equipement();
         public DateTime DateDebutMaintenance { get; set; }
