@@ -60,7 +60,7 @@ namespace Taje_Plazza.Infrastructure.Repertory
 
         public async Task SupprimerClientAsync(Guid id)
         {
-            var client = await applicationDbContext.Clients.FindAsync(id);
+            var client = await applicationDbContext.Clients.FirstOrDefaultAsync(x=>x.Id ==id);
             if (client is null) throw new Exception($"Cet nom {client} n existe pas dans notre Base de donnes");
             else applicationDbContext.Clients.Remove(client);
             await SaveChangeAsync();
