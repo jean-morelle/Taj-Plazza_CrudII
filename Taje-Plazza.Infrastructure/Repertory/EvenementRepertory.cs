@@ -39,7 +39,7 @@ namespace Taje_Plazza.Infrastructure.Repertory
 
         public async Task<IEnumerable<Evenement>> ObtenirTousLesEvenementAsync()
         {
-            var evenements = await applicationDbContext.Evenements.ToListAsync();
+            var evenements = await applicationDbContext.Evenements.Include(x => x.Client).Include(x => x.Client).ToListAsync();
             return evenements;
         }
 

@@ -5,7 +5,7 @@ namespace Taj_Plazza_CrudII.Extention
 {
     public static class ClientExtension
     {
-        public static List<ClientReadDto> ConvertTodto(this IEnumerable<Client> clients)
+        public static IEnumerable<ClientReadDto> ConvertTodto(this IEnumerable<Client> clients)
         {
             return (
               from client in clients
@@ -44,7 +44,7 @@ namespace Taj_Plazza_CrudII.Extention
         {
             return new Client
             {
-                //Id = Guid.NewGuid(), // ou laisse ton ORM le gérer si auto-généré
+                //Id = Guid.NewGuid(), 
                 Nom = dto.Nom,
                 Prenom = dto.Prenom,
                 Email = dto.Email,

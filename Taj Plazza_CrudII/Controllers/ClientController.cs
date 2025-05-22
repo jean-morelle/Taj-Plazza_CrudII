@@ -34,7 +34,7 @@ namespace Taj_Plazza_CrudII.Controllers
             return Ok(client); 
         }
         [HttpPost("Ajouter un nouveau client")]
-        public async Task<ActionResult> Create(AddClientDto dto)
+        public async Task<ActionResult>AjouterClient(AddClientDto dto)
         {
             var client = dto.ConvertToEntity(); // <== Appel à ton extension
             await clientServices.AjouterClientAsync(client);
@@ -42,7 +42,7 @@ namespace Taj_Plazza_CrudII.Controllers
         }
      
         [HttpPut("Mettre Ajours un client par Son {id}")]
-        public async Task<ActionResult> Update(Guid id, UpdateClientDto dto)
+        public async Task<ActionResult>MettreAjoursEvenement(Guid id, UpdateClientDto dto)
         {
             var client = await clientServices.ObtenirClientParIdAsync(id);
             if (client == null)
@@ -53,7 +53,7 @@ namespace Taj_Plazza_CrudII.Controllers
             return NoContent();
         }
         [HttpDelete(" Supprimer le client par Son{id}")]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult>SupprimerClient(Guid id)
         {
             var client = await clientServices.ObtenirClientParIdAsync(id);
             if (client == null)

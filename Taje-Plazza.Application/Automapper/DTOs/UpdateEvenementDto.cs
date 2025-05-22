@@ -11,15 +11,11 @@ namespace Taje_Plazza.Application.Automapper.DTOs
     {
         public Guid Id { get; set; }
         public Guid ClientId { get; set; }
-        public Client Client { get; set; } = new Client();
         public Guid EspaceId { get; set; }
-        public Espace Espace { get; set; } = new Espace();
         public string Nom { get; set; } = string.Empty;
         public DateTime DateEvenement { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
         public TypeDEvenement TypeEvenement { get; set; }
-       
-
     }
 }

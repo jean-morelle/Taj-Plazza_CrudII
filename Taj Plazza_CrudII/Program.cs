@@ -16,6 +16,10 @@ builder.Services.AddScoped<IClientRepertory, ClientRepertory>();
 builder.Services.AddScoped<IClientServices,ClientServices>();
 builder.Services.AddScoped<IEvenementRepertory, EvenementRepertory>();
 builder.Services.AddScoped<IEvenementServices, EvenementServices>();
+builder.Services.AddScoped<IEspaceRepertory, EspaceRepertory>();
+builder.Services.AddScoped<IEspaceServices,EspaceServices>();
+builder.Services.AddScoped<IquipementRepertory,EquipementRepertory>();
+builder.Services.AddScoped<IquipementServices,EquipementServices>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
