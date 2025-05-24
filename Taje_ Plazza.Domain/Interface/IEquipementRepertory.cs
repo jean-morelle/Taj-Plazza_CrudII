@@ -7,10 +7,10 @@ using Taje__Plazza.Domain.Models;
 
 namespace Taje__Plazza.Domain.Interface
 {
-    public interface IquipementServices
+    public interface IEquipementRepertory
     {
         Task<IEnumerable<Equipement>> ObtenirTousLesEquipemntsAsync();
-        Task<Equipement> ObtenirEquipement(Guid equipementId);
+        Task<Equipement>ObtenirEquipement(Guid equipementId);
         Task AjouterEquipement(Equipement equipement);
         Task SupprimerEquipement(Guid equipementId);
         Task MettreAjoursEquipementAsync(Equipement equipement);

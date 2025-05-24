@@ -10,10 +10,10 @@ namespace Taje_Plazza.Application.Automapper.DTOs
     public class EspaceReadDto
     {
         public Guid Id { get; set; }
-        public string NomEquipement { get; set; } = string.Empty;
-        public string TypeEquipement { get; set; } = string.Empty;
         public string Nom { get; set; } = string.Empty;
         public string Capacite { get; set; } = string.Empty;
-        public string TypeEspace { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public string NomEquipement { get; set; } = string.Empty;
+        public string TypeEquipement { get; set; } = string.Empty;
     }
 }

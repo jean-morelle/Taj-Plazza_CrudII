@@ -5,43 +5,22 @@ namespace Taj_Plazza_CrudII.Extention
 {
     public static class EspaceExtension
     {
-        public static IEnumerable<EspaceReadDto> ConvertToDto(this IEnumerable<Espace> espaces, IEnumerable<Equipement> equipements)
+       public static IEnumerable<EspaceReadDto>ConvertToDto(this IEnumerable<Espace>espaces,IEnumerable<Equipement> equipements)
         {
-            Console.WriteLine("=== DEBUG INFO ===");
-            Console.WriteLine($"Nombre d'espaces: {espaces.Count()}");
-            Console.WriteLine($"Nombre d'équipements: {equipements.Count()}");
-
-            foreach (var espace in espaces)
-            {
-                Console.WriteLine($"Espace {espace.Nom} - EquipementId: {espace.EquipementId}");
-            }
-
-            foreach (var eq in equipements)
-            {
-                Console.WriteLine($"Equipement ID: {eq.Id}, Nom: {eq.Nom}, Type: {eq.Type}");
-            }
-
-            var result = espaces.GroupJoin(
-                equipements,
-                espace => espace.EquipementId,
-                equipement => equipement.Id,
-                (espace, matchingEquipements) => new EspaceReadDto
-                {
-                    Id = espace.Id,
-                    Nom = espace.Nom,
-                    Capacite = espace.Capacite,
-                    TypeEspace = espace.TypeEspace,
-                    NomEquipement = matchingEquipements.FirstOrDefault()?.Nom ?? "NOT FOUND",
-                    TypeEquipement = matchingEquipements.FirstOrDefault()?.Type ?? "NOT FOUND"
-                }).ToList();
-
-            return result;
+            var result = from espace in espaces
+                         join equipement in equipements
+                         on espace.EquipementId equals equipement.Id
+                         select new EspaceReadDto
+                         {
+                             Id = espace.Id,
+                             Nom = espace.Nom,
+                             Type = espace.TypeEspace,
+                             Capacite = espace.Capacite,
+                             NomEquipement = equipement.Nom,
+                             TypeEquipement = equipement.Type,
+                         };
+                   return result;    
         }
-
-
-
-
-
         public static EspaceReadDto ConvertTDto(this Espace espace ,Equipement equipement)
         {
             return new EspaceReadDto
@@ -49,7 +28,7 @@ namespace Taj_Plazza_CrudII.Extention
              Id = espace.Id,
              Nom = espace.Nom,
              Capacite = espace.Capacite,
-             TypeEspace = espace.TypeEspace,
+             Type = espace.TypeEspace,
              NomEquipement = equipement.Nom,
              TypeEquipement = equipement.Type,
             };

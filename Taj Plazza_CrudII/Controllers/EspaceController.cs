@@ -13,9 +13,9 @@ namespace Taj_Plazza_CrudII.Controllers
     public class EspaceController : ControllerBase
     {
         private readonly IEspaceServices espaceServices;
-        private readonly IquipementServices services;
+        private readonly IEquipementServices services;
 
-        public EspaceController(IEspaceServices espaceServices, IquipementServices services)
+        public EspaceController(IEspaceServices espaceServices, IEquipementServices services)
         {
             this.espaceServices = espaceServices;
             this.services = services;
@@ -45,9 +45,14 @@ namespace Taj_Plazza_CrudII.Controllers
         public async Task<IActionResult>SupprimerEspace(Guid id)
         {
             var espace = await espaceServices.ObtenirEspaceAsync(id);
-            if (espace == null) return NotFound();
-            else await espaceServices.SupprimerEspaceAsync(id);
-            await espaceServices.SaveChangeAsync();
+            if (espace == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                await espaceServices.SupprimerEspaceAsync(id);
+            }
             return NoContent();
         }
       

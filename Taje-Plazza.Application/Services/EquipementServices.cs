@@ -8,11 +8,11 @@ using Taje__Plazza.Domain.Models;
 
 namespace Taje_Plazza.Application.Services
 {
-    public class EquipementServices:IquipementServices
+    public class EquipementServices:IEquipementServices
     {
-        private readonly IquipementRepertory equipementRepertory;
+        private readonly IEquipementRepertory equipementRepertory;
 
-        public EquipementServices(IquipementRepertory equipementRepertory )
+        public EquipementServices(IEquipementRepertory equipementRepertory )
         {
             this.equipementRepertory = equipementRepertory;
         }

@@ -50,10 +50,16 @@ namespace Taje_Plazza.Infrastructure.Repertory
 
         public async Task SupprimerEspaceAsync(Guid espaceId)
         {
-            var espace = await applicationDbContext.Espaces.FirstOrDefaultAsync(x => x.Id == espaceId);
-            if (espace is null) throw new Exception();
-            else applicationDbContext.Espaces.Update(espace);
-            await SaveChangeAsync();
+            var espace = await applicationDbContext.Espaces.FindAsync(espaceId);
+            if (espace is null)
+            {
+                throw new Exception();
+            }
+            else
+            {
+                applicationDbContext.Espaces.Update(espace);
+                await SaveChangeAsync();
+            }
         }
     }
 }

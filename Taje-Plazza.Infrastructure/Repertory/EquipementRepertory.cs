@@ -10,7 +10,7 @@ using Taje__Plazza.Domain.Models;
 
 namespace Taje_Plazza.Infrastructure.Repertory
 {
-    public class EquipementRepertory:IquipementRepertory
+    public class EquipementRepertory:IEquipementRepertory
     {
         private readonly ApplicationDbContext applicationDbContext;
 

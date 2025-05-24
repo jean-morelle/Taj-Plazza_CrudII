@@ -18,8 +18,8 @@ builder.Services.AddScoped<IEvenementRepertory, EvenementRepertory>();
 builder.Services.AddScoped<IEvenementServices, EvenementServices>();
 builder.Services.AddScoped<IEspaceRepertory, EspaceRepertory>();
 builder.Services.AddScoped<IEspaceServices,EspaceServices>();
-builder.Services.AddScoped<IquipementRepertory,EquipementRepertory>();
-builder.Services.AddScoped<IquipementServices,EquipementServices>();
+builder.Services.AddScoped<IEquipementRepertory,EquipementRepertory>();
+builder.Services.AddScoped<IEquipementServices,EquipementServices>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

@@ -11,9 +11,9 @@ namespace Taj_Plazza_CrudII.Controllers
     [ApiController]
     public class EquipementController : ControllerBase
     {
-        private readonly IquipementServices equipementServices;
+        private readonly IEquipementServices equipementServices;
 
-        public EquipementController(IquipementServices equipementServices)
+        public EquipementController(IEquipementServices equipementServices)
         {
             this.equipementServices = equipementServices;
         }
