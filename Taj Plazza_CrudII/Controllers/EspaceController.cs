@@ -12,7 +12,7 @@ namespace Taj_Plazza_CrudII.Controllers
         private readonly IEspaceServices espaceServices;
         private readonly IEquipementServices equipementServices;
 
-        public EspaceController(IEspaceServices espaceServices,IEquipementServices equipementServices)
+        public EspaceController(IEspaceServices espaceServices, IEquipementServices equipementServices)
         {
             this.espaceServices = espaceServices;
             this.equipementServices = equipementServices;
@@ -25,5 +25,17 @@ namespace Taj_Plazza_CrudII.Controllers
             var result = espaces.ConvertToDto(equipements);
             return Ok(result);
         }
-       
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEspaceById(Guid espaceId,Guid equipementId)
+        {
+            var espace = await espaceServices.ObtenirEspaceAsync(espaceId);
+            var equipement = await equipementServices.ObtenirEquipement(equipementId);
+            if (espace == null || equipement == null)
+            {
+                return NotFound();
+            }
+            var result = espace.ConvertTo(equipement);
+            return Ok(result);
+        }
+    }
 }

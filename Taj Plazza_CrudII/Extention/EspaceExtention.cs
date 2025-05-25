@@ -22,5 +22,18 @@ namespace Taj_Plazza_CrudII.Extention
             return result;
  
         }
+        public static EspaceReadDto ConvertTo ( this Espace espace, Equipement equipement)
+        {
+           return (
+                new EspaceReadDto
+                {
+                    Id = espace.Id,
+                    Nom = espace.Nom,
+                    Capacite = espace.Capacite,
+                    Type = espace.TypeEspace,
+                    NomEquipement = equipement.Nom,
+                    TypeEquipement = equipement.Type
+                });
+        }
     }
 }
