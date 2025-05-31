@@ -12,6 +12,7 @@ namespace Taje__Plazza.Domain.Interface
         Task<IEnumerable<Client>>ObtenirTousLesClientsAsync();
         Task<Client> ObtenirClientParIdAsync(Guid clientId);
         Task<Client> ObtenirClientParNomAsync(string nom);
+        Task<Client> ObtenirClientParEmailAsync(string email);
         Task AjouterClientAsync(Client client);
         Task ModifierClientAsync(Client client);
         Task SupprimerClientAsync(Guid clientId);

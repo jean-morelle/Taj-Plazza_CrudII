@@ -14,5 +14,6 @@ namespace Taje__Plazza.Domain.Interface
         Task AjouterEquipement(Equipement equipement);
         Task SupprimerEquipement(Guid equipementId);
         Task MettreAjoursEquipementAsync(Equipement equipement);
+        Task SaveChangeAsync();
     }
 }

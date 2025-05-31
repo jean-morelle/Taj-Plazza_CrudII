@@ -10,7 +10,7 @@ using Taje__Plazza.Domain.Models;
 
 namespace Taje_Plazza.Infrastructure.Repertory
 {
-    public class EspaceRepertory :IEspaceRepertory
+    public class EspaceRepertory : IEspaceRepertory
     {
         private readonly ApplicationDbContext applicationDbContext;
 
@@ -21,7 +21,7 @@ namespace Taje_Plazza.Infrastructure.Repertory
 
         public async Task AjouterEspaceAsync(Espace espace)
         {
-            applicationDbContext.Espaces.Add(espace);
+            await applicationDbContext.Espaces.AddAsync(espace);
             await SaveChangeAsync();
         }
 
@@ -33,8 +33,9 @@ namespace Taje_Plazza.Infrastructure.Repertory
 
         public async Task<Espace> ObtenirEspaceAsync(Guid espaceId)
         {
-            var espace = await applicationDbContext.Espaces.FirstOrDefaultAsync(x => x.Id == espaceId);
-                 return espace == null ? throw new Exception() : espace;
+            var espace = await applicationDbContext.Espaces
+                .FirstOrDefaultAsync(e => e.Id == espaceId);
+            return espace;
         }
 
         public async Task<IEnumerable<Espace>> ObtenirTousLesEspaceAsync()
@@ -51,14 +52,14 @@ namespace Taje_Plazza.Infrastructure.Repertory
         public async Task SupprimerEspaceAsync(Guid espaceId)
         {
             var espace = await applicationDbContext.Espaces.FindAsync(espaceId);
-            if (espace is null)
+            if (espace != null)
             {
-                throw new Exception();
+                applicationDbContext.Espaces.Remove(espace);
+                await SaveChangeAsync();
             }
             else
             {
-                applicationDbContext.Espaces.Update(espace);
-                await SaveChangeAsync();
+                throw new KeyNotFoundException("Espace not found.");
             }
         }
     }

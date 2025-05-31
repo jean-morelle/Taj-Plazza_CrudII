@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +12,7 @@ namespace Taje_Plazza.Infrastructure.Repertory
 {
     public class ClientRepertory:IClientRepertory
     {
+        private readonly IClientRepertory clientRepertory;
         private readonly ApplicationDbContext applicationDbContext;
 
         public ClientRepertory(ApplicationDbContext applicationDbContext)
@@ -22,8 +22,9 @@ namespace Taje_Plazza.Infrastructure.Repertory
 
         public async Task AjouterClientAsync(Client client)
         {
-           await applicationDbContext.Clients.AddAsync(client);
+            applicationDbContext.Clients.Add(client);
             await SaveChangeAsync();
+
         }
 
         public async Task ModifierClientAsync(Client client)
@@ -32,25 +33,30 @@ namespace Taje_Plazza.Infrastructure.Repertory
             await SaveChangeAsync();
         }
 
+        public async Task<Client> ObtenirClientParEmailAsync(string email)
+        {
+            var client = await applicationDbContext.Clients.FindAsync(email);
+            return client ?? throw new KeyNotFoundException($"Client with email {email} not found.");
+
+        }
+
         public async Task<Client> ObtenirClientParIdAsync(Guid clientId)
         {
-            var client = await applicationDbContext.Clients.FirstOrDefaultAsync(x=>x.Id ==clientId);
-            if (client is null) throw new Exception($"Pardon cet{client} n existe pas dans notre Base de Donnee");
-            else return client;
+           var client = await applicationDbContext.Clients.FindAsync(clientId);
+            return client ?? throw new KeyNotFoundException($"Client with ID {clientId} not found.");
         }
 
         public async Task<Client> ObtenirClientParNomAsync(string nom)
         {
             var client = await applicationDbContext.Clients.FindAsync(nom);
-            if (client is null) throw new Exception($"cet nom {client} n existe pas dans notre Base de donnee");
-            else return client;
+            return client ?? throw new KeyNotFoundException($"Client with name {nom} not found.");
+
         }
 
         public async Task<IEnumerable<Client>> ObtenirTousLesClientsAsync()
         {
             var clients = await applicationDbContext.Clients.ToListAsync();
-            if (clients is null) throw new Exception("oof les donnees sont vides");
-            return clients;
+            return clients ?? throw new KeyNotFoundException("No clients found.");
         }
 
         public async Task SaveChangeAsync()
@@ -58,11 +64,14 @@ namespace Taje_Plazza.Infrastructure.Repertory
             await applicationDbContext.SaveChangesAsync();
         }
 
-        public async Task SupprimerClientAsync(Guid id)
+        public async Task SupprimerClientAsync(Guid clientId)
         {
-            var client = await applicationDbContext.Clients.FirstOrDefaultAsync(x=>x.Id ==id);
-            if (client is null) throw new Exception($"Cet nom {client} n existe pas dans notre Base de donnes");
-            else applicationDbContext.Clients.Remove(client);
+            var client = await applicationDbContext.Clients.FindAsync(clientId);
+            if (client == null)
+            {
+                throw new KeyNotFoundException($"Client with ID {clientId} not found.");
+            }
+            applicationDbContext.Clients.Remove(client);
             await SaveChangeAsync();
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,16 +8,10 @@ using Taj_Plazza.Core.Models;
 
 namespace Taje__Plazza.Domain.Models
 {
-    public class Client:BaseEntiy
+    public class Client:Utilisateur
     {
-        public Guid UtilisateurId { get; set; }
-        public Utilisateur Utilisateur { get; set; } = new Utilisateur();
-        public string Nom { get; set; } = string.Empty;
-        public string Prenom { get; set; } = string.Empty;
-        public string NumeroDeTelephone { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string Adresse { get; set; } = string.Empty;
+      
         public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
-        public ICollection<Evenement> Evenements { get; set; } = new List<Evenement>();
+        public ICollection<Facture> Invoices { get; set; } = new List<Facture>();
     }
 }

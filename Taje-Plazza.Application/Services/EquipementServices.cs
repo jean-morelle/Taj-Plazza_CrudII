@@ -12,37 +12,44 @@ namespace Taje_Plazza.Application.Services
     {
         private readonly IEquipementRepertory equipementRepertory;
 
-        public EquipementServices(IEquipementRepertory equipementRepertory )
+        public EquipementServices(IEquipementRepertory equipementRepertory)
         {
             this.equipementRepertory = equipementRepertory;
         }
 
-        public async Task AjouterEquipement(Equipement equipement)
+        public Task AjouterEquipement(Equipement equipement)
         {
-            await equipementRepertory.AjouterEquipement( equipement );
+            equipementRepertory.AjouterEquipement(equipement);
+            return equipementRepertory.SaveChangeAsync();
         }
 
-        public async Task MettreAjoursEquipementAsync(Equipement equipement)
+        public Task MettreAjoursEquipementAsync(Equipement equipement)
         {
-            await equipementRepertory.MettreAjoursEquipementAsync(equipement);
+            equipementRepertory.MettreAjoursEquipementAsync(equipement);
+            return equipementRepertory.SaveChangeAsync();
         }
 
-        public async Task<Equipement> ObtenirEquipement(Guid equipementId)
+        public Task<Equipement> ObtenirEquipement(Guid equipementId)
         {
-           var equipement = await equipementRepertory.ObtenirEquipement(equipementId);
+            var equipement = equipementRepertory.ObtenirEquipement(equipementId);
             return equipement;
         }
 
-        public async Task<IEnumerable<Equipement>> ObtenirTousLesEquipemntsAsync()
+        public Task<IEnumerable<Equipement>> ObtenirTousLesEquipemntsAsync()
         {
-            var equipement = await equipementRepertory.ObtenirTousLesEquipemntsAsync();
-            return equipement;
+            var equipements = equipementRepertory.ObtenirTousLesEquipemntsAsync();
+            return equipements;
+        }
+
+        public async Task SaveChangeAsync()
+        {
+            await equipementRepertory.SaveChangeAsync();
         }
 
         public async Task SupprimerEquipement(Guid equipementId)
         {
             await equipementRepertory.SupprimerEquipement(equipementId);
-            
+            await SaveChangeAsync();
         }
     }
 }

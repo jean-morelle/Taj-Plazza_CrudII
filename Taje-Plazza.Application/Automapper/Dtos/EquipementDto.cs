@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Taje__Plazza.Domain.Models
+namespace Taje_Plazza.Application.Automapper.Dtos
 {
-    public class Equipement :BaseEntiy
+    public class EquipementDto
     {
         [Required]
         public string? Name { get; set; }

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Taje_ Plazza.Domain\Taje_ Plazza.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Automapper\Profils\" />
+  </ItemGroup>
+
 </Project>

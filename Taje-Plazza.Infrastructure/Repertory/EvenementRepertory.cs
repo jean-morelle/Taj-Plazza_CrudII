@@ -10,7 +10,7 @@ using Taje__Plazza.Domain.Models;
 
 namespace Taje_Plazza.Infrastructure.Repertory
 {
-    public class EvenementRepertory:IEvenementRepertory
+    public class EvenementRepertory : IEvenementRepertory
     {
         private readonly ApplicationDbContext applicationDbContext;
 
@@ -33,13 +33,14 @@ namespace Taje_Plazza.Infrastructure.Repertory
 
         public async Task<Evenement> ObtenirEvenementParIdAsync(Guid evenementId)
         {
-            var evenement = await applicationDbContext.Evenements.FirstOrDefaultAsync(x=>x.Id == evenementId);
-            return evenement == null ? throw new Exception() : evenement;
+            var evenement = await applicationDbContext.Evenements
+                .FirstOrDefaultAsync(e => e.Id == evenementId);
+            return evenement;
         }
 
         public async Task<IEnumerable<Evenement>> ObtenirTousLesEvenementAsync()
         {
-            var evenements = await applicationDbContext.Evenements.Include(x => x.Client).Include(x => x.Client).ToListAsync();
+            var evenements = await applicationDbContext.Evenements.ToListAsync();
             return evenements;
         }
 
@@ -48,13 +49,18 @@ namespace Taje_Plazza.Infrastructure.Repertory
             await applicationDbContext.SaveChangesAsync();
         }
 
-        public async Task SupprimerEvenementAsync(Guid evenementId)
+        public Task SupprimerEvenementAsync(Guid evenementId)
         {
-            var evenement = await applicationDbContext.Evenements.FirstOrDefaultAsync(x => x.Id == evenementId);
-            if (evenement is null)
-                throw new Exception();
-           else applicationDbContext.Evenements.Remove(evenement);
-            await SaveChangeAsync();
+            var evenement = applicationDbContext.Evenements.Find(evenementId);
+            if (evenement != null)
+            {
+                applicationDbContext.Evenements.Remove(evenement);
+                return SaveChangeAsync();
+            }
+            else
+            {
+                throw new KeyNotFoundException("L'événement avec l'ID spécifié n'existe pas.");
+            }
         }
     }
 }

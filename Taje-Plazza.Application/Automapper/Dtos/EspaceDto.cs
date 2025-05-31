@@ -5,19 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Taje__Plazza.Domain.Models
+namespace Taje_Plazza.Application.Automapper.Dtos
 {
-    public class Espace:BaseEntiy
+    public class EspaceDto
     {
-
         [Required]
         public string? Name { get; set; }
 
         public int Capacity { get; set; }
 
         public string? Type { get; set; }
-
-        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
-        public ICollection<Facture> Invoices { get; set; } = new List<Facture>();
     }
 }

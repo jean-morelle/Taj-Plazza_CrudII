@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +10,14 @@ namespace Taje__Plazza.Domain.Models
 {
     public class MaintenanceDEquipement:BaseEntiy
     {
-        public Guid EquipementId { get; set; }
-        public Equipement Equipement { get; set; } = new Equipement();
-        public DateTime DateDebutMaintenance { get; set; }
-        public DateTime DateFinMaintenance { get; set; }
-        public string TypeMaintenance { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
-        public bool EstTerminee { get; set; } = false;
+
+        [ForeignKey("Equipment")]
+        public Guid EquipmentId { get; set; }
+        public Equipement Equipment { get; set; } = new Equipement();
+
+        [Required]
+        public DateTime MaintenanceDate { get; set; }
+
+        public string? Description { get; set; }
     }
 }

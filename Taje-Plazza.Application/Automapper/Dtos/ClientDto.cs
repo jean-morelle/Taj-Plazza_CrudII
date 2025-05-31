@@ -1,12 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Taje__Plazza.Domain.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Taj_Plazza.Core.Models
+namespace Taje_Plazza.Application.Automapper.Dtos
 {
-    public class Utilisateur
+    public class ClientDto
     {
-        [Key]
-        public Guid Id { get; set; }
         [Required]
         public string? LastName { get; set; }
 
@@ -20,4 +22,3 @@ namespace Taj_Plazza.Core.Models
         public string? PhoneNumber { get; set; }
     }
 }
-

@@ -29,22 +29,28 @@ namespace Taje_Plazza.Application.Services
             await clientRepertory.SaveChangeAsync();
         }
 
+        public async Task<Client> ObtenirClientParEmailAsync(string email)
+        {
+            var client = await clientRepertory.ObtenirClientParEmailAsync(email);
+            return client ?? throw new KeyNotFoundException($"Client with email {email} not found.");
+        }
+
         public async Task<Client> ObtenirClientParIdAsync(Guid clientId)
         {
             var client = await clientRepertory.ObtenirClientParIdAsync(clientId);
-            return client;
+            return client ?? throw new KeyNotFoundException($"Client with ID {clientId} not found.");
         }
 
         public async Task<Client> ObtenirClientParNomAsync(string nom)
         {
             var client = await clientRepertory.ObtenirClientParNomAsync(nom);
-            return client;
+            return client ?? throw new KeyNotFoundException($"Client with name {nom} not found.");
         }
 
         public async Task<IEnumerable<Client>> ObtenirTousLesClientsAsync()
         {
-            var client = await clientRepertory.ObtenirTousLesClientsAsync();
-            return client;
+            var clients = await clientRepertory.ObtenirTousLesClientsAsync();
+            return clients ?? throw new KeyNotFoundException("No clients found.");
         }
 
         public async Task SaveChangeAsync()
@@ -54,7 +60,7 @@ namespace Taje_Plazza.Application.Services
 
         public async Task SupprimerClientAsync(Guid clientId)
         {
-             await clientRepertory.SupprimerClientAsync(clientId);
+            await clientRepertory.SupprimerClientAsync(clientId);
             await clientRepertory.SaveChangeAsync();
         }
     }

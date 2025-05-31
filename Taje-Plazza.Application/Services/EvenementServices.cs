@@ -8,7 +8,7 @@ using Taje__Plazza.Domain.Models;
 
 namespace Taje_Plazza.Application.Services
 {
-    public class EvenementServices:IEvenementServices
+    public class EvenementServices : IEvenementServices
     {
         private readonly IEvenementRepertory evenementRepertory;
 
@@ -20,13 +20,13 @@ namespace Taje_Plazza.Application.Services
         public async Task AjouterEvenementAsync(Evenement evenement)
         {
             await evenementRepertory.AjouterEvenementAsync(evenement);
-            await SaveChangeAsync();
+            await evenementRepertory.SaveChangeAsync();
         }
 
         public async Task MettreAjoursEvenementAsync(Evenement evenement)
         {
-           await evenementRepertory.MettreAjoursEvenementAsync (evenement);
-            await SaveChangeAsync();
+            await evenementRepertory.MettreAjoursEvenementAsync(evenement);
+            await evenementRepertory.SaveChangeAsync();
         }
 
         public async Task<Evenement> ObtenirEvenementParIdAsync(Guid evenementId)
@@ -35,9 +35,9 @@ namespace Taje_Plazza.Application.Services
             return evenement;
         }
 
-        public async Task<IEnumerable<Evenement>> ObtenirTousLesEvenementAsync()
+        public Task<IEnumerable<Evenement>> ObtenirTousLesEvenementAsync()
         {
-            var evenements = await evenementRepertory.ObtenirTousLesEvenementAsync();
+            var evenements = evenementRepertory.ObtenirTousLesEvenementAsync();
             return evenements;
         }
 

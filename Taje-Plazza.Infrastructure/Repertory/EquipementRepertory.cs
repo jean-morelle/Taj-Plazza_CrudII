@@ -10,7 +10,7 @@ using Taje__Plazza.Domain.Models;
 
 namespace Taje_Plazza.Infrastructure.Repertory
 {
-    public class EquipementRepertory:IEquipementRepertory
+    public class EquipementRepertory : IEquipementRepertory
     {
         private readonly ApplicationDbContext applicationDbContext;
 
@@ -22,34 +22,41 @@ namespace Taje_Plazza.Infrastructure.Repertory
         public async Task AjouterEquipement(Equipement equipement)
         {
             applicationDbContext.Equipements.Add(equipement);
-            await applicationDbContext.SaveChangesAsync();
+            await SaveChangeAsync();
         }
 
         public async Task MettreAjoursEquipementAsync(Equipement equipement)
         {
             applicationDbContext.Equipements.Update(equipement);
-            await applicationDbContext.SaveChangesAsync();
+            await SaveChangeAsync();
         }
 
         public async Task<Equipement> ObtenirEquipement(Guid equipementId)
         {
-            var equipement = await applicationDbContext.Equipements.FirstOrDefaultAsync(x=>x.Id==equipementId);
-            return equipement == null ?throw new Exception() :  equipement;
+           var equipement = await applicationDbContext.Equipements.FindAsync(equipementId);
+            return equipement ?? throw new KeyNotFoundException($"Equipement with ID {equipementId} not found.");
         }
 
         public async Task<IEnumerable<Equipement>> ObtenirTousLesEquipemntsAsync()
         {
-            var equipement = await applicationDbContext.Equipements.ToListAsync();
-            return equipement;
+            var equipements = await applicationDbContext.Equipements.ToListAsync();
+            return equipements;
+        }
+
+        public async Task SaveChangeAsync()
+        {
+            await applicationDbContext.SaveChangesAsync();
         }
 
         public async Task SupprimerEquipement(Guid equipementId)
         {
-            var equipement = await applicationDbContext.Equipements.FirstOrDefaultAsync(x=>x.Id==equipementId);
-            if (equipement == null) throw new Exception();
-            else  applicationDbContext.Equipements.Remove(equipement);
-            await applicationDbContext.SaveChangesAsync();
+            var equipement = await applicationDbContext.Equipements.FindAsync(equipementId);
+            if (equipement == null)
+            {
+                throw new KeyNotFoundException($"Equipement with ID {equipementId} not found.");
+            }
+            applicationDbContext.Equipements.Remove(equipement);
+            await SaveChangeAsync();
         }
     }
 }
- 

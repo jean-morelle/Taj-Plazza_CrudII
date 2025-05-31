@@ -22,61 +22,45 @@ namespace Taj_Plazza.Core.DataAcess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Personnel>()
-                  .HasOne(p => p.Utilisateur)
-                  .WithMany(u => u.Personnels)
-                  .HasForeignKey(p => p.UtilisateurId)
-                  .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Client>()
-                .HasOne(c => c.Utilisateur)
-                .WithMany(u => u.Clients)
-                .HasForeignKey(c => c.UtilisateurId)
-                .OnDelete(DeleteBehavior.Cascade);
+            // Exemple : Relation One-to-Many entre Client et Reservation
             modelBuilder.Entity<Reservation>()
                 .HasOne(r => r.Client)
                 .WithMany(c => c.Reservations)
-                .HasForeignKey(r => r.ClientId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasForeignKey(r => r.ClientId);
+
+            // Exemple : Relation One-to-Many entre Space et Reservation
             modelBuilder.Entity<Reservation>()
-                .HasOne(r => r.Evenement)
-                .WithMany(e => e.Reservations)
-                .HasForeignKey(r => r.EvenementId)
-                .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Evenement>()
-                .HasOne(e => e.Client)
-                .WithMany(c => c.Evenements)
-                .HasForeignKey(e => e.ClientId)
-                .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Evenement>()
-                .HasOne(f => f.Espace)
-                .WithMany(r => r.Evenements)
-                .HasForeignKey(f => f.EspaceId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasOne(r => r.Space)
+                .WithMany(s => s.Reservations)
+                .HasForeignKey(r => r.SpaceId);
+
             modelBuilder.Entity<Facture>()
-                .HasOne(e => e.Reservation)
-                .WithMany(r => r.Factures)
-                .HasForeignKey(e => e.ReservationId)
-                .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<MaintenanceDEquipement>()
-                .HasOne(x => x.Equipement)
-                 .WithMany(f => f.MaintenanceDEquipements)
-                   .HasForeignKey(x => x.EquipementId)
-                     .OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<LocationDEquipement>()
-                .HasOne(e => e.Equipement)
-                 .WithMany(x => x.LocationDEquipements)
-                  .HasForeignKey(f => f.EquipementId)
-                   .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<LocationDEquipement>()
-                .HasOne(x => x.Evenement)
-                 .WithMany(f => f.LocationDequipements)
-                  .HasForeignKey(u => u.EvenementId)
-                   .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Espace>()
-                .HasOne(x => x.Equipement)
-                 .WithMany(x => x.Espaces)
-                  .OnDelete(DeleteBehavior.Cascade);
+        .HasOne(f => f.Reservation)
+        .WithMany(r => r.Invoices)
+        .HasForeignKey(f => f.ReservationId)
+        .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Facture>()
+                .HasOne(f => f.Client)
+                .WithMany(c => c.Invoices)
+                .HasForeignKey(f => f.ClientId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Facture>()
+                .HasOne(f => f.Space)
+                .WithMany(s => s.Invoices)
+                .HasForeignKey(f => f.SpaceId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Facture>()
+       .Property(f => f.TotalAmount)
+       .HasColumnType("decimal(18,2)"); // Définit la précision et l’échelle
+
+            modelBuilder.Entity<Reservation>()
+                .Property(r => r.AmountPaid)
+                .HasColumnType("decimal(18,2)"); // Évite le troncage des valeurs
         }
     }
 }
