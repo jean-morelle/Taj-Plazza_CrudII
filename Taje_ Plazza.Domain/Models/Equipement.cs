@@ -37,7 +37,7 @@ namespace Taje_Plazza.Domain.Models
         
         [DataType(DataType.Date)]
         public DateTime? DateAcquisition { get; set; }
-        
+
         public string? EtatActuel { get; set; }
 
         public virtual ICollection<LocationEquipement> Locations { get; set; } = new List<LocationEquipement>();
