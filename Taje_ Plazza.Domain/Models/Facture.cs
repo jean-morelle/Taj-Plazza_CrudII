@@ -5,15 +5,29 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Taje_Plazza.Domain.Models;
 
 namespace Taje__Plazza.Domain.Models
 {
-    public class Facture:BaseEntiy
+    public class Facture : BaseEntity
     {
         [Required]
-        public DateTime InvoiceDate { get; set; }
+        public DateTime DateFacture { get; set; }
 
-        public string? PaymentStatus { get; set; }
+        [Required]
+        public DateTime DateEcheance { get; set; }
+
+        public string? StatutPaiement { get; set; }
+
+        [Required]
+        public string Reference { get; set; }
+
+        public decimal MontantTotal { get; set; }
+        public decimal MontantRestantDu { get; set; }
+
+        public DateTime? DernierPaiement { get; set; }
+        public string? MethodePaiement { get; set; }
+        public string? MotifAnnulation { get; set; }
 
         [ForeignKey("Reservation")]
         public Guid ReservationId { get; set; }
@@ -23,10 +37,8 @@ namespace Taje__Plazza.Domain.Models
         public Guid ClientId { get; set; }
         public Client Client { get; set; } = new Client();
 
-        [ForeignKey("Space")]
-        public Guid SpaceId { get; set; }
-        public Espace Space { get; set; } = new Espace();
-
-        public decimal TotalAmount { get; set; }
+        [ForeignKey("Espace")]
+        public Guid EspaceId { get; set; }
+        public Espace Espace { get; set; } = new Espace();
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Taje__Plazza.Domain.Models;
 using Taje_Plazza.Application.Automapper.Dtos;
+using Taje_Plazza.Domain.Models;
 
 namespace Taje_Plazza.Application.Automapper.Profils
 {
